@@ -1,7 +1,7 @@
-function navBar(){
+function NavBar(){
   return <div>
-    navBar
+    NavBar
   </div>
 }
 
-export default navBar;
+export default NavBar;
