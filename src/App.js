@@ -3,7 +3,7 @@ import Layout from './components/layout/Layout';
 function App() {
   return (
     <div className="App">
-      <h1>koom is here</h1>
+      <h1 style={{backgroundColor: '#FF57DD'}}>koom is here</h1>
       <Layout />
     </div>
   );
