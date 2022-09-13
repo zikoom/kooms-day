@@ -1,6 +1,6 @@
 function LeftNavBar(){
   return (
-    <div>
+    <div className="left-navbar-container">
       <h1>LeftNavBar</h1>
     </div>
   )

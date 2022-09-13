@@ -1,1 +1,9 @@
-html, body {margin-left: 45px; margin-right: 45px; padding: 0px;}
+.main-content-wrapper {margin-left: 45px; margin-right: 45px; padding: 0px;}
+
+
+.header-wrapper {background-color: darkgray;}
+
+.left-navbar-container {background-color: aquamarine;}
+
+
+.footer-wrapper {background-color: antiquewhite;}
