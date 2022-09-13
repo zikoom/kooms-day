@@ -17,8 +17,8 @@ root.render(
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
         <Route path="webgl" element={<WebGL />} />
-        <Route path="guest-book" element={<div>나왔다감!!</div>} />
         <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
+        <Route path="guest-book" element={<div>나왔다감!!</div>} />
       </Route>
     </Routes>
   </BrowserRouter>
