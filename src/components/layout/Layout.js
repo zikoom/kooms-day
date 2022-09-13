@@ -9,7 +9,9 @@ function Layout(){
     <div>
       <Header />
       <div className="main-content-wrapper">
-        <Outlet />
+        <div className="main-content-second-wrapper">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </div>
