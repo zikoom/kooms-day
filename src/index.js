@@ -8,6 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import Home from './components/Home'
+import WebGL from "./components/WebGL";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
+        <Route path="webgl" element={<WebGL />} />
       </Route>
     </Routes>
   </BrowserRouter>
