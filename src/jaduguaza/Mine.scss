@@ -1,3 +1,5 @@
+@import '../scss/varilable.scss';
+
 .horror-top-wrapper{
   display: grid;
   grid-template-columns: 1fr 1.6fr;
@@ -11,27 +13,52 @@
   grid-row: 1 / 3;
   background-color: #F0F0F0;
 
-  // display: flex;
-  // flex-direction: row;
+  display: flex;
+  flex-direction: column;
 
   .horror-nav-upper{
     width: inherit;
-    height: 45vh;
+    height: 45%;
+
+    
+    hgroup{
+      padding: 10vh 0 0 72px;
+      h1{
+        display: block;
+        font-family: RingsideExtraWide-Book,Blank,Helvetica Neue,Helvetica,sans-serif;
+        text-transform: uppercase;
+        font-size: 5rem;
+        color: $MAIN_COLOR;
+        
+      }
+
+      span{
+        display: block;
+      }
+    }
+
   }
   .horror-nav-below{
     width: inherit;
-    height: 55vh;
+    height: 55%;
+
+    padding: 72px;
+
+    .below-container{
+      background-color: blue;
+      height: 100%;
+    }
   }
 }
 
 .horror-header{
   grid-column: 2 / 3;
   grid-row: 1 / span 1;
-  background-color: #E7473C;
+  background-color: $MAIN_COLOR;
 }
 
 .horror-content{
   grid-column: 2 / 3;
   grid-row: 2 / span 1;
-  background-color: #E7473C;
+  background-color: $MAIN_COLOR;
 }
