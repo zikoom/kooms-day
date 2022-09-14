@@ -1,7 +1,7 @@
 function Mine(){
   return (
-    <div>
-      <h1>Mine</h1>
+    <div className="horror-top-wrapper">
+
     </div>
   )
 }

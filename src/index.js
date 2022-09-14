@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import Home from './components/Home'
 import WebGL from "./components/WebGL";
-import Mine from "./Mine";
+import Mine from "./jaduguaza/Mine";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
