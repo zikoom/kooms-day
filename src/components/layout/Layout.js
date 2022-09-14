@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
+import NavBar from "./NavBar";
 
 import '../../App.scss'
 
 function Layout(){
   return (
     <div className="top-container">
-      <Header />
+      <NavBar />
       <Outlet />
     </div>
   )
