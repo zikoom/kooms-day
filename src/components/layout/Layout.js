@@ -6,14 +6,14 @@ import '../../App.scss'
 
 function Layout(){
   return (
-    <div>
+    <div className="top-container">
       <Header />
-      <div className="main-content-wrapper">
+      <Outlet />
+      {/* <div className="main-content-wrapper">
         <div className="main-content-second-wrapper">
-          <Outlet />
         </div>
-      </div>
-      <Footer />
+      </div> */}
+      {/* <Footer /> */}
     </div>
   )
 }
