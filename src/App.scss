@@ -1,7 +1,7 @@
 
 .top-container{
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(max-content, 1fr) 4fr;
   grid-template-rows: 100vh;
 }
 .nav-wrapper {background-color: rgb(78, 19, 214); height: inherit;}
@@ -27,9 +27,3 @@
 
 
 
-/* 공통 css? */
-
-.inline-block {display: inline-block;}
-.text-left {text-align: left;}
-// .justify-center {justify-content: center;}
-.text-white {color: white;}
