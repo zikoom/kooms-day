@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import Home from './components/Home'
 import WebGL from "./components/WebGL";
+import Mine from "./Mine";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="webgl" element={<WebGL />} />
         <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
         <Route path="guest-book" element={<div>나왔다감!!</div>} />
+        <Route path="main" element={<Mine />} />
       </Route>
     </Routes>
   </BrowserRouter>
