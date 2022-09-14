@@ -1,10 +1,13 @@
 
 .top-container{
   display: grid;
-  grid-template-columns: minmax(max-content, 1fr) 4fr;
+  grid-template-columns: minmax(max-content, 250px) 4fr;
   grid-template-rows: 100vh;
 }
-.nav-wrapper {background-color: rgb(78, 19, 214); height: inherit;}
+.nav-wrapper {
+  background-color: rgb(78, 19, 214);
+  padding-left: 15px;
+}
 
 
 .flex-container{
