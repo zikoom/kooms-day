@@ -1,3 +1,4 @@
+@import "./reset.scss";
 @import "./scss/varilable";
 
 *{
@@ -26,7 +27,7 @@ html, body{
   height: $HEADER_HEIGHT;
   width: 100%;
 
-  
+
   z-index: 100;
   background-color: black;
 }
@@ -41,7 +42,7 @@ html, body{
   z-index: 20;
 
   background-color: cadetblue;
-  
+
 }
 
 main{
