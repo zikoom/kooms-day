@@ -1,18 +1,30 @@
 
+import { useState } from "react";
 import PropsChild from "./PropsChild";
 
 function PropsParent(){
-  let name = "haha";
-  let age = 50;
+
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
+
+  const onNameChange = (e) => {setName(e.target.value)}
+  const onAgeChange = (e) => {setAge(e.target.value)}
 
   return (
     <div>
       <div>
+        <label for="name">이름을 적어주세용~ </label>
+        <input type="text" id="name" onChange={onNameChange} value={name}/>
+        <br/>
+        <label for="age">나이를 적어주세용~ </label>
+        <input type="text" id="age" onChange={onAgeChange} value={age} />
+
 
       </div>
       <div>
-        <h1>프롭스 !!</h1>
-        <PropsChild name={name} age={age} />
+        {
+          (age && name ? <PropsChild name={name} age={age} /> : null)
+        }
       </div>
     </div>
   )
