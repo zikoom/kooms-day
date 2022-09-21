@@ -11,6 +11,7 @@ import Home from './components/Home'
 import WebGL from "./components/WebGL";
 import Mine from "./jaduguaza/Mine";
 import Clone2 from "./jaduguaza/Clone2";
+import PropsParent from "./jaduguaza/PropsParent";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
         <Route path="zaduguaza">
           <Route path="main" element={<Mine />} />
           <Route path="clone2" element={<Clone2 />} />
+          <Route path="props" element={<PropsParent />} />
 
         </Route>
       </Route>
