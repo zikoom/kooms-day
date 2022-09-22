@@ -13,10 +13,10 @@ function PropsParent(){
   return (
     <div>
       <div>
-        <label for="name">이름을 적어주세용~ </label>
+        <label htmlFor="name">이름을 적어주세용~ </label>
         <input type="text" id="name" onChange={onNameChange} value={name}/>
         <br/>
-        <label for="age">나이를 적어주세용~ </label>
+        <label htmlFor="age">나이를 적어주세용~ </label>
         <input type="text" id="age" onChange={onAgeChange} value={age} />
 
 
