@@ -3,7 +3,7 @@ import { useInput } from "../hooks/useInput";
 
 function NicoHook(){
 
-  const nameInputHook = useInput('koom', (text) => {return text.length <= 10});
+
 
   const contents = [
     {
@@ -16,21 +16,29 @@ function NicoHook(){
     }
   ]
 
-  // const useTabs = (initialTab, allTabs) => {
+  const useTab = (initialTab, allTabs) => {
+    initialTab = initialTab >= allTabs.length ? allTabs.length - 1 : initialTab;
+    const [currentIndex, setCurrentIndex] = useState(initialTab);
 
-  //   if(!allTabs || !Array.isArray(allTabs) || !allTabs.length){
-  //     return;
-  //   }
 
-  //   const [currentIndex, setCurrentIndex] = useState(initialTab);
+    if(!allTabs || !Array.isArray(allTabs) || !allTabs.length){
+      return;
+    }
 
-  //   return {
-  //     currentItem: allTabs[currentIndex],
-  //   };
+    const changeItem = (idx) => {
+      console.log('changeItem in: ', idx);
+      idx = idx >= allTabs.length ? allTabs.length - 1 : idx;
+      setCurrentIndex(idx);
+    }
 
-  //   const tabs = useTabs(0, contents);
+    return {
+      currentItem: allTabs[currentIndex],
+      changeItem: changeItem
+    };
+  }
 
-  // }
+  const {currentItem, changeItem} = useTab(1, contents);
+  const nameInputHook = useInput('', (text) => {return text.length <= 10});
 
   return (
     <div className="NicoHook">
@@ -39,10 +47,8 @@ function NicoHook(){
         <input placeholder="Name" {...nameInputHook}/>
       </div>
       <div className="usetabhook">
-        {contents.map(section => <button key={section.tab}>{section.tab}</button>)}
-        <div>
-          {}
-        </div>
+        {contents.map((section, idx) => <button onClick={() => {changeItem(idx)}} key={section.tab}>{section.tab}</button>)}
+        <div>{currentItem.content}</div>
       </div>
     </div>
   )
