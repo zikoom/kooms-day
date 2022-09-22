@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInput } from "../hooks/useInput";
 
 function NicoHook(){
@@ -37,8 +37,14 @@ function NicoHook(){
     };
   }
 
+  const [number, setNumber] = useState(0);
+  const [aNumber, setAnumber] = useState(0);
+
   const {currentItem, changeItem} = useTab(1, contents);
   const nameInputHook = useInput('', (text) => {return text.length <= 10});
+
+  const sayHello = () => {console.log('hallo~ App renderd.')}
+  useEffect(sayHello, [aNumber])
 
   return (
     <div className="NicoHook">
@@ -49,6 +55,10 @@ function NicoHook(){
       <div className="usetabhook">
         {contents.map((section, idx) => <button onClick={() => {changeItem(idx)}} key={section.tab}>{section.tab}</button>)}
         <div>{currentItem.content}</div>
+      </div>
+      <div className="use-effect">
+        <button onClick={() => setNumber(cur => cur + 1)}>{number}</button>
+        <button onClick={() => setAnumber(cur => cur + 1)}>{aNumber}</button>
       </div>
     </div>
   )
