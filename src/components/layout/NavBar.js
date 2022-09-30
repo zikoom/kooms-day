@@ -6,9 +6,14 @@ import { useState } from "react";
 function NavBar(){
   const [isLogined, setIsLogined] = useState(false);
   const [userName, setUserName] = useState('');
+  const [uid, setUid] = useState(null);
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+  const initUid = (uid) => {
+    setUid((cur) => !cur ? uid : cur);
+  }
 
   const login = async () => {
     try{
@@ -19,6 +24,7 @@ function NavBar(){
       // The signed-in user info.
       const user = loginResult.user;
       setUserName(user.displayName);
+      initUid(user.uid);
       console.log('user: ', user);
       setIsLogined(true);
 
@@ -35,6 +41,7 @@ function NavBar(){
   const logout = () => {
     setIsLogined(false);
   }
+
   return (
     <nav className="nav">
       {
