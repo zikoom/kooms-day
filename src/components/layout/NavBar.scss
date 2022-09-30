@@ -1,5 +1,9 @@
 .user-info{
   height: 100px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .user-name{
     color: white;
     font-weight: bold;
