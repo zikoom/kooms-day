@@ -14,7 +14,6 @@ import Clone2 from "./jaduguaza/Clone2";
 import PropsParent from "./jaduguaza/PropsParent";
 import NicoHook from "./jaduguaza/NicoHook";
 import GuestBook from "./jaduguaza/GuestBook";
-import Login from "./components/Login";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,7 +21,6 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
         <Route path="webgl" element={<WebGL />} />
         <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
         <Route path="guest-book" element={<GuestBook></GuestBook>} />
