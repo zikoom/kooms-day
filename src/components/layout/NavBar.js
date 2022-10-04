@@ -11,6 +11,10 @@ function NavBar(){
   const auth = getAuth();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
+  console.log("uid: ", uid);
+
+
+
   const initUid = (uid) => {
     setUid((cur) => !cur ? uid : cur);
   }
