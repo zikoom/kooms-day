@@ -33,6 +33,42 @@ input[type=checkbox]{
       margin-top: 5px;
       margin-bottom: 5px;
 
+      display: flex;
+      align-items: center;
+
+      .user-name-wrapper{
+        width: 50%;
+        height: 100%;
+        // background-color: rebeccapurple;
+        display: flex;
+        align-items: center;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .user-name-icon{
+          height: 100%;
+          width: 40px;
+
+          border: solid 1px black;
+
+        }
+        .user-name-input-wrapper{
+          height: 100%;
+          border: solid 1px black;
+          input{
+            height: 100%;
+            outline: none;
+          }
+        }
+
+      }
+
+      .user-password-info{
+        width: 50%;
+        background-color: antiquewhite;
+      }
+
     }
 
   }

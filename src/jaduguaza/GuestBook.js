@@ -14,7 +14,14 @@ export default function GuestBook(){
         <input type="checkbox" name="" id={boardPublicCheckBoxID} />
         <label htmlFor={boardPublicCheckBoxID}>비공개</label>
         <div className="user-info-wrapper">
-          <div className="user-name-wrapper"></div>
+          <div className="user-name-wrapper">
+            <div className="user-name-icon">
+
+            </div>
+            <div className="user-name-input-wrapper">
+              <input type="text" id="board-name"/>
+            </div>
+          </div>
           <div className="user-password-info"></div>
         </div>
       </div>
