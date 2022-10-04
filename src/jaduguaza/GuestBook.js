@@ -15,14 +15,19 @@ export default function GuestBook(){
         <label htmlFor={boardPublicCheckBoxID}>비공개</label>
         <div className="user-info-wrapper">
           <div className="user-name-wrapper">
-            <div className="user-name-icon">
-
-            </div>
+            <div className="user-name-icon"></div>
             <div className="user-name-input-wrapper">
-              <input type="text" id="board-name"/>
+              <input type="text" placeholder="이름을 입력하세요" />
             </div>
           </div>
-          <div className="user-password-info"></div>
+          <div className="user-password-info">
+            <div className="user-password-icon">
+
+            </div>
+            <div className="user-password-input-wrapper">
+              <input type="text" placeholder="비밀번호를 입력하세요" ></input>
+            </div>
+          </div>
         </div>
       </div>
       <div className="title-password"></div>

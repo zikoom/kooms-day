@@ -41,6 +41,7 @@ input[type=checkbox]{
         height: 100%;
         // background-color: rebeccapurple;
         display: flex;
+        border-collapse:collapse;
         align-items: center;
 
         padding-top: 10px;
@@ -52,13 +53,26 @@ input[type=checkbox]{
 
           border: solid 1px black;
 
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+
+          background-image: url('../img/person-icon.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-color: white;
+          background-position: center;
+
         }
         .user-name-input-wrapper{
           height: 100%;
           border: solid 1px black;
+          border-radius: 0 8px 8px 0;
+          border-left: 0;
           input{
             height: 100%;
             outline: none;
+
+            border-radius: 0 8px 8px 0;
           }
         }
 
@@ -66,7 +80,43 @@ input[type=checkbox]{
 
       .user-password-info{
         width: 50%;
-        background-color: antiquewhite;
+        height: 100%;
+        // background-color: rebeccapurple;
+        display: flex;
+        border-collapse:collapse;
+        align-items: center;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .user-password-icon{
+          height: 100%;
+          width: 40px;
+
+          border: solid 1px black;
+
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+
+          background-image: url('../img/key_icon.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-color: white;
+          background-position: center;
+        }
+
+        .user-password-input-wrapper{
+          height: 100%;
+          border: solid 1px black;
+          border-radius: 0 8px 8px 0;
+          border-left: 0;
+          input{
+            height: 100%;
+            outline: none;
+
+            border-radius: 0 8px 8px 0;
+          }
+        }
       }
 
     }
