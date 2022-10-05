@@ -29,6 +29,10 @@ export default function GuestBook(){
             </div>
           </div>
         </div>
+        <div className="board-input-wrapper">
+          <textarea></textarea>
+          <button>저장 해버리기~</button>
+        </div>
       </div>
       <div className="title-password"></div>
       <div className="pagination-wrapper"></div>
