@@ -1,28 +1,20 @@
 import { Link } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import './NavBar.scss'
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout} from '../../app/reducers/loginManager'
 
 function NavBar(){
-  const [userName, setUserName] = useState('');
-  const [uid, setUid] = useState(null);
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
   const loginState = useSelector((state) => state.loginManager.value);
+  // const uid = useSelector((state) => state.loginManager.userID);
+  const userName = useSelector((state) => state.loginManager.userName);
   const dispatch = useDispatch();
 
 
-  console.log("uid: ", uid);
-
-
-
-  const initUid = (uid) => {
-    setUid((cur) => !cur ? uid : cur);
-  }
 
   const loginEvent = async () => {
     try{
@@ -32,10 +24,10 @@ function NavBar(){
       console.log('token: ', token);
       // The signed-in user info.
       const user = loginResult.user;
-      setUserName(user.displayName);
-      initUid(user.uid);
-      console.log('user: ', user);
-      dispatch(login());
+      dispatch(login({
+        userID: user.uid,
+        userName: user.displayName
+      }));
 
     }catch(error){
       const errorCode = error.code;
