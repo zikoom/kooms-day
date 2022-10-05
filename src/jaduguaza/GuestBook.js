@@ -1,7 +1,7 @@
 import './GuestBook.scss'
 
 import { db } from "../js/firebase"
-import {ref, set} from "firebase/database"
+import {ref, push, child, update} from "firebase/database"
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -33,18 +33,54 @@ export default function GuestBook(){
     setIsPrivateBoard((cur) => !cur);
   }
 
+  /**
+   * 댓글 관련 인풋창 몽땅 초기화
+   */
+  const resetINnputs = () => {
+    setFakeName('');
+    setBoardPassword('');
+    setBoardContent('');
+    setIsPrivateBoard(false);
+  }
+
   const addNewBoard = async (fakeName, boardPassword, content, isPrivateBoard, uniqueID = null) => {
     console.log('addNewBoard in.');
     console.log("params: ", fakeName, boardPassword, content, isPrivateBoard, uniqueID);
+    if(!uniqueID){
+      alert("구글 로그인해야만 방명록을 작성 가능합니다!!");
+      return;
+    }
+
+    if(!fakeName || !boardPassword || !boardContent){
+      alert("아이디, 비번, 글 내용을 작성해주세요.");
+      return;
+    }
+
+    const newPostKey = push(child(ref(db), uniqueID)).key;
+    console.log('newPostKey: ', newPostKey);
+
+    const board = {
+      fakeName: fakeName,
+      boardPassword: boardPassword,
+      content: content,
+      isPrivateBoard: isPrivateBoard,
+      uniqueID: uniqueID
+    }
 
     try{
-      await set(ref(db, 'boards/test'), {
-        name: 'test',
-        content: 'test'
-      })
+      // await set(ref(db, 'boards/test'), {
+      //   name: 'test',
+      //   content: 'test'
+      // })
+      const updates = {};
+
+      updates[`/boards/${uniqueID}/${newPostKey}`] = board;
+      await update(ref(db), updates)
       alert("저장 성공!!");
+      resetINnputs();
     }catch(err){
       console.log('err in addNewBoard. err: ', err);
+      alert("저장 실패!!");
     }
 
 
