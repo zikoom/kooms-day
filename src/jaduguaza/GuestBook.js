@@ -36,7 +36,7 @@ export default function GuestBook(){
   /**
    * 댓글 관련 인풋창 몽땅 초기화
    */
-  const resetINnputs = () => {
+  const resetInputs = () => {
     setFakeName('');
     setBoardPassword('');
     setBoardContent('');
@@ -77,7 +77,7 @@ export default function GuestBook(){
       updates[`/boards/${uniqueID}/${newPostKey}`] = board;
       await update(ref(db), updates)
       alert("저장 성공!!");
-      resetINnputs();
+      resetInputs();
     }catch(err){
       console.log('err in addNewBoard. err: ', err);
       alert("저장 실패!!");
