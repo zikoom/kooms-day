@@ -2,14 +2,19 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import './NavBar.scss'
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout} from '../../app/reducers/loginManager'
 
 function NavBar(){
-  const [isLogined, setIsLogined] = useState(false);
   const [userName, setUserName] = useState('');
   const [uid, setUid] = useState(null);
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+  const loginState = useSelector((state) => state.loginManager.value);
+  const dispatch = useDispatch();
+
 
   console.log("uid: ", uid);
 
@@ -19,7 +24,7 @@ function NavBar(){
     setUid((cur) => !cur ? uid : cur);
   }
 
-  const login = async () => {
+  const loginEvent = async () => {
     try{
       const loginResult = await signInWithPopup(auth, provider);
       const credential = GoogleAuthProvider.credentialFromResult(loginResult);
@@ -30,7 +35,7 @@ function NavBar(){
       setUserName(user.displayName);
       initUid(user.uid);
       console.log('user: ', user);
-      setIsLogined(true);
+      dispatch(login());
 
     }catch(error){
       const errorCode = error.code;
@@ -42,22 +47,22 @@ function NavBar(){
       console.log('구글 로그인 에러. code, msg, email, credential: ', errorCode, errorMessage, email, credential);
     }
   }
-  const logout = () => {
-    setIsLogined(false);
+  const logoutEvent = () => {
+    dispatch(logout())
   }
 
   return (
     <nav className="nav">
       {
-        isLogined ?
+        loginState ?
         <div className="user-info">
           <div className="user-name">{userName} 님!</div>
           <div>화녕 합니다!!</div>
           <div>압도적 웰컴!!</div>
-          <button onClick={logout}>로그아웃 하기</button>
+          <button onClick={logoutEvent}>로그아웃 하기</button>
         </div> :
         <div className="user-info">
-          <button onClick={login}>구글 로그인 하기</button>
+          <button onClick={loginEvent}>구글 로그인 하기</button>
         </div>
 
       }
