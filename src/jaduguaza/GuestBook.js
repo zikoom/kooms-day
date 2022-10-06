@@ -56,6 +56,7 @@ export default function GuestBook(){
       return;
     }
 
+    const curTimestamp = new Date().getTime();
     const newPostKey = push(child(ref(db), uniqueID)).key;
     console.log('newPostKey: ', newPostKey);
 
@@ -64,7 +65,8 @@ export default function GuestBook(){
       boardPassword: boardPassword,
       content: content,
       isPrivateBoard: isPrivateBoard,
-      uniqueID: uniqueID
+      uniqueID: uniqueID,
+      curTimestamp: curTimestamp
     }
 
     try{
@@ -84,6 +86,21 @@ export default function GuestBook(){
     }
 
 
+  }
+
+  function Reply({username="unknown", content="내용없음"}){
+    return (
+      <div className="reply">
+        {/* 답글 zone */}
+        <div className="reply-info">
+          <span>{username}</span>
+        </div>
+        <div className="reply-content">
+          <p>{content}</p>
+        </div>
+
+      </div>
+    )
   }
 
 
@@ -114,7 +131,9 @@ export default function GuestBook(){
           <button onClick={() => {addNewBoard(fakeName, boardPassword, boardContent, isPrivateBoard, userID)}}>저장 해버리기~</button>
         </div>
       </div>
-      <div className="title-password"></div>
+      <div className="reply-wrapper">
+        <Reply></Reply>
+      </div>
       <div className="pagination-wrapper"></div>
     </div>
 

@@ -152,9 +152,41 @@ input[type=checkbox]{
     }
 
   }
-  // .board-wrapper{
+  .reply-wrapper{
+    width: 100%;
+    min-height: 70px;
+    height: 70px;
+    padding: 0 20px;
 
-  // }
+    // background-color: aqua;
+
+    border-top: solid 1px rgb(63, 60, 60);
+    border-bottom: solid 1px rgb(63, 60, 60);
+
+    .reply{
+      width: 100%;
+      min-height: 70px;
+      height: 70px;
+      height: 100%;
+      display: flex;
+
+      .reply-info{
+        width: 100px;
+        height: 100%;
+
+        // background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .reply-content{
+        width: calc(100% - 100px);
+        height: 100%;
+        padding: 10px 30px;
+        // background-color: blue;
+      }
+    }
+  }
   // .pagination-wrapper{
 
   // }
