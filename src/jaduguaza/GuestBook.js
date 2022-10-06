@@ -1,9 +1,10 @@
 import './GuestBook.scss'
 
 import { db } from "../js/firebase"
-import {ref, push, child, update} from "firebase/database"
+import {ref, push, child, update, onValue} from "firebase/database"
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import BoardReply from '../components/BoardReply'
 
 export default function GuestBook(){
   const boardPublicCheckBoxID = 'public-checkbox'
@@ -11,6 +12,11 @@ export default function GuestBook(){
   const [boardPassword, setBoardPassword] = useState('');
   const [boardContent, setBoardContent] = useState('');
   const [isPrivateBoard, setIsPrivateBoard] = useState(false)
+
+  const boardRef = ref(db, 'boards');
+  onValue(boardRef, (snapshot) => {
+    console.log('snapShot: ', snapshot);
+  })
 
   /**
    * firebase 고유 ID
@@ -88,21 +94,6 @@ export default function GuestBook(){
 
   }
 
-  function Reply({username="unknown", content="내용없음"}){
-    return (
-      <div className="reply">
-        {/* 답글 zone */}
-        <div className="reply-info">
-          <span>{username}</span>
-        </div>
-        <div className="reply-content">
-          <p>{content}</p>
-        </div>
-
-      </div>
-    )
-  }
-
 
   return (
     <div className="guset-book">
@@ -132,7 +123,7 @@ export default function GuestBook(){
         </div>
       </div>
       <div className="reply-wrapper">
-        <Reply></Reply>
+        <BoardReply username="testuser" content="test-content"></BoardReply>
       </div>
       <div className="pagination-wrapper"></div>
     </div>
