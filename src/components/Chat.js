@@ -1,5 +1,5 @@
 import config from '../config.json'
-import axios from 'axios'
+// import axios from 'axios'
 import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
@@ -11,7 +11,7 @@ console.log('CONFIG: ', config);
 const _MY_COMMENT = 1;
 const _OTHER_COMMENT = 2;
 
-const socket = io.connect(config.SOCKET_SERVER);
+io.connect(config.SOCKET_SERVER);
 
 //남의말 컴포넌트
 const OtherComment = ({text}) => {
@@ -90,9 +90,9 @@ const Chat = () => {
     new Msg({type: _OTHER_COMMENT, text: 'other'}),
   ]);
 
-  const addMsg = ({type, text}) => {
-    setMsgContainer(cur => [...cur, {type, text}])
-  }
+  // const addMsg = ({type, text}) => {
+  //   setMsgContainer(cur => [...cur, {type, text}])
+  // }
 
 
 
