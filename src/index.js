@@ -12,6 +12,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import Home from './components/Home'
 import WebGL from "./components/WebGL";
+import Chat from "./components/Chat";
 import Mine from "./jaduguaza/Mine";
 import Clone2 from "./jaduguaza/Clone2";
 import PropsParent from "./jaduguaza/PropsParent";
@@ -31,6 +32,7 @@ root.render(
           <Route path="webgl" element={<WebGL />} />
           <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
           <Route path="guest-book" element={<GuestBook></GuestBook>} />
+          <Route path="chat" element={<Chat></Chat>} />
           <Route path="zaduguaza">
             <Route path="main" element={<Mine />} />
             <Route path="clone2" element={<Clone2 />} />
