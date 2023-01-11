@@ -1,30 +1,24 @@
 import config from '../config.json'
 import axios from 'axios'
+import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
 import { useState } from 'react';
 
 console.log('CONFIG: ', config);
 
-const testLoad = async () => {
-  try{
-    const data = await axios.get(config.SOCKET_SERVER + 'test/123')
-    console.log('data: ', data);
-  }catch(e){
-    console.log("e: ", e);
-  }
-}
-
 //메세지 구분용 상수
 const _MY_COMMENT = 1;
 const _OTHER_COMMENT = 2;
+
+const socket = io.connect(config.SOCKET_SERVER);
 
 //남의말 컴포넌트
 const OtherComment = ({text}) => {
   return (
     <article className="msg-container msg-remote" id="msg-0">
       <div className="msg-box">
-        <img className="user-img" id="user-0" src="//gravatar.com/avatar/00034587632094500000000000000000?d=retro" />
+        <img className="user-img" id="user-0" alt="사용자 이미지" src="//gravatar.com/avatar/00034587632094500000000000000000?d=retro" />
         <div className="flr">
           <div className="messages">
             <p className="msg" id="msg-0">
@@ -50,7 +44,7 @@ const MyComment = ({text}) => {
           </div>
           <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">2 minutes ago</span></span>
         </div>
-        <img className="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
+        <img className="user-img" id="user-0" alt="사용자 이미지" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
       </div>
     </article>
   )
@@ -144,6 +138,8 @@ const Chat = () => {
                 return <MyComment text={msg.text} key={idx} />
               }else if(msg.type === _OTHER_COMMENT){
                 return <OtherComment text={msg.text} key={idx} />
+              }else{
+                return <div>None</div>
               }
             })
           }
