@@ -89,15 +89,15 @@ const Chat = () => {
     new Msg({type: _MY_COMMENT, text: 'my text2'}),
     new Msg({type: _OTHER_COMMENT, text: 'other'}),
   ]);
-
-  // const addMsg = ({type, text}) => {
-  //   setMsgContainer(cur => [...cur, {type, text}])
-  // }
+  const addMsg = ({type, text}) => {
+    setMsgContainer(cur => [...cur, {type, text}])
+  }
 
 
 
   return (
     <div className="chatbox-container">
+      <button onClick={() => {addMsg({type:1, text:'haha'})}}></button>
       <section className="chatbox">
         <section className="chat-window">
           {/* <article className="msg-container msg-remote" id="msg-0">
