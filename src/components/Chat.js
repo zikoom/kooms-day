@@ -1,5 +1,4 @@
 import config from '../config.json'
-import axios from 'axios'
 import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
@@ -15,7 +14,7 @@ console.log('_SERVER_PATH: ', _SERVER_PATH);
 const _MY_COMMENT = 1;
 const _OTHER_COMMENT = 2;
 
-io(_SERVER_PATH, {
+const socket = io(_SERVER_PATH, {
   reconnectionDelay: 1000,
   reconnection: true,
   reconnectionAttemps: 10,
@@ -25,19 +24,11 @@ io(_SERVER_PATH, {
   rejectUnauthorized: false
 })
 
-const testLoad = async () => {
-  try{
-    const result = await axios.get(_SERVER_PATH + 'test/abcd')
-    console.log('testresult: ', result);
-  }catch(e){
-    console.log("e: ", e);
-  }
-}
+console.log('socket: ', socket);
 
-testLoad();
 
-//남의말 컴포넌트
-const OtherComment = ({text}) => {
+//내가 한 말
+const MyComment = ({text}) => {
   return (
     <article className="msg-container msg-remote" id="msg-0">
       <div className="msg-box">
@@ -54,8 +45,8 @@ const OtherComment = ({text}) => {
     </article>
   )
 }
-//내말 컴포넌트
-const MyComment = ({text}) => {
+//남이 한 말
+const OtherComment = ({text}) => {
   return (
     <article className="msg-container msg-self" id="msg-0">
       <div className="msg-box">
