@@ -1,5 +1,5 @@
 import config from '../config.json'
-// import axios from 'axios'
+import axios from 'axios'
 import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
@@ -12,6 +12,17 @@ const _MY_COMMENT = 1;
 const _OTHER_COMMENT = 2;
 
 io.connect(config.SOCKET_SERVER);
+
+const testLoad = async () => {
+  try{
+    const result = axios.get(config.SOCKET_SERVER + '/test/abcd')
+    console.log('testresult: ', result);
+  }catch(e){
+    console.log("e: ", e);
+  }
+}
+
+testLoad();
 
 //남의말 컴포넌트
 const OtherComment = ({text}) => {
