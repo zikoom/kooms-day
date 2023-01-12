@@ -15,7 +15,7 @@ io.connect(config.SOCKET_SERVER);
 
 const testLoad = async () => {
   try{
-    const result = axios.get(config.SOCKET_SERVER + '/test/abcd')
+    const result = await axios.get(config.SOCKET_SERVER + '/test/abcd')
     console.log('testresult: ', result);
   }catch(e){
     console.log("e: ", e);
