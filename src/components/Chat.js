@@ -24,7 +24,7 @@ const socket = io(_SERVER_PATH, {
   rejectUnauthorized: false
 })
 
-console.log('socket: ', socket);
+console.log('socket: ', socket)
 
 
 //내가 한 말
