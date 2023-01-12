@@ -6,7 +6,10 @@ import ".//../css/Chatbox.css"
 import { useState } from 'react';
 
 console.log('cconfig: ', config);
-const _SERVER_PATH = config.PATH.SOCKET_SERVER
+const PATH_TYPE = config['PATH_TYPE'];
+console.log('PATH_TYPE: ', PATH_TYPE)
+const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
+console.log('_SERVER_PATH: ', _SERVER_PATH);
 
 //메세지 구분용 상수
 const _MY_COMMENT = 1;
