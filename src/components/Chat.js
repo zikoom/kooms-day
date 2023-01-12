@@ -5,17 +5,26 @@ import io from 'socket.io-client'
 import ".//../css/Chatbox.css"
 import { useState } from 'react';
 
-console.log('CONFIG: ', config);
+console.log('cconfig: ', config);
+const _SERVER_PATH = config.PATH.SOCKET_SERVER
 
 //메세지 구분용 상수
 const _MY_COMMENT = 1;
 const _OTHER_COMMENT = 2;
 
-io.connect(config.SOCKET_SERVER);
+io(_SERVER_PATH, {
+  reconnectionDelay: 1000,
+  reconnection: true,
+  reconnectionAttemps: 10,
+  // transports: ['websocket'],
+  agent: false,
+  upgrade: false,
+  rejectUnauthorized: false
+})
 
 const testLoad = async () => {
   try{
-    const result = await axios.get(config.SOCKET_SERVER + 'test/abcd')
+    const result = await axios.get(_SERVER_PATH + 'test/abcd')
     console.log('testresult: ', result);
   }catch(e){
     console.log("e: ", e);
