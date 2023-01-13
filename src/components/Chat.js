@@ -2,7 +2,7 @@ import config from '../config.json'
 import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 console.log('cconfig: ', config);
 const PATH_TYPE = config['PATH_TYPE'];
@@ -11,20 +11,25 @@ const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
 console.log('_SERVER_PATH: ', _SERVER_PATH);
 
 //메세지 구분용 상수
-const _MY_COMMENT = 1;
-const _OTHER_COMMENT = 2;
 
-const socket = io(_SERVER_PATH, {
-  reconnectionDelay: 1000,
-  reconnection: true,
-  reconnectionAttemps: 10,
-  // transports: ['websocket'],
-  agent: false,
-  upgrade: false,
-  rejectUnauthorized: false
-})
+// let _SOCKET_ID = '';
 
-console.log('socket: ', socket)
+// const socket = io(_SERVER_PATH, {
+//   reconnectionDelay: 1000,
+//   reconnection: true,
+//   reconnectionAttemps: 10,
+//   // transports: ['websocket'],
+//   agent: false,
+//   upgrade: false,
+//   rejectUnauthorized: false
+// })
+
+// socket.on('init', (msg) => {
+//   _SOCKET_ID = msg;
+//   console.log('my Socket ID: ', _SOCKET_ID);
+// })
+
+
 
 
 //내가 한 말
@@ -80,34 +85,57 @@ const SendMsgSVG = (props) => (
   </svg>
 );
 
-//Msg Object constructor
-function Msg({type, text}){
-  if(!(type && text)) {console.log('type or text unvalid. return');}
-  this.type = type;
-  this.text = text;
-}
-
 const handleSubmit = e => {
   e.preventDefault();
 }
 
-const sendMsg = () => {
-  console.log('sendMsg in');
-}
-
+const socket = io(_SERVER_PATH, {
+  reconnectionDelay: 1000,
+  reconnection: true,
+  reconnectionAttemps: 10,
+  // transports: ['websocket'],
+  agent: false,
+  upgrade: false,
+  rejectUnauthorized: false
+})
 
 const Chat = () => {
 
-  const [msgContainer, setMsgContainer] = useState([
-    new Msg({type: _MY_COMMENT, text: 'my text1'}),
-    new Msg({type: _MY_COMMENT, text: 'my text2'}),
-    new Msg({type: _OTHER_COMMENT, text: 'other'}),
-  ]);
-  const addMsg = ({type, text}) => {
+  let _SOCKET_ID = '';
+
+  const _MY_COMMENT = 1;
+  const _OTHER_COMMENT = 2;
+
+  const [msgContainer, setMsgContainer] = useState([]);
+  const [msgInput, setMsgInput] = useState('');
+
+  const onMsgInputChange = (e) => {const {value} = e.target ;setMsgInput(value)}
+
+  const addMsg = (type, text) => {
+    if(!(type && text)) {console.log('type or text unvalid. return');}
     setMsgContainer(cur => [...cur, {type, text}])
   }
 
+  const sendMsg = () => {
+    console.log('sendMsg in. msg: ', msgInput);
+    socket.emit('chat', msgInput);
+    setMsgInput('');
+  }
 
+  useEffect(() => {
+    socket.on('init', (msg) => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      _SOCKET_ID = msg;
+      console.log('my Socket ID: ', _SOCKET_ID);
+    })
+
+    socket.on('test', (msg) => {
+      console.log('chat_success recv. msg: ', msg);
+      addMsg(_MY_COMMENT, msg);
+    })
+
+    return () => {socket.disconnect()}
+  }, [])
 
   return (
     <div className="chatbox-container">
@@ -143,8 +171,6 @@ const Chat = () => {
               <img className="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
             </div>
           </article> */}
-          <MyComment text={"mycomment"} />
-          <OtherComment text={"otherComment"} />
 
           {
             msgContainer.map((msg, idx) => {
@@ -161,7 +187,7 @@ const Chat = () => {
         </section>
 
         <form className="chat-input" onSubmit={handleSubmit}>
-          <input type="text" autoComplete="on" placeholder="Type a message" />
+          <input type="text" autoComplete="on" value={msgInput} onChange={onMsgInputChange} placeholder="Type a message" />
           <button onClick={sendMsg}>
               <SendMsgSVG />
           </button>
