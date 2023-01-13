@@ -90,7 +90,7 @@ html,
     border-radius: 0 6px 6px 0;
     max-width: 80%;
     width: auto;
-    float: left;
+    float: right;
     box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
 }
 .user-img {
@@ -134,14 +134,14 @@ html,
 .msg-self .msg-box {
     border-radius: 6px 0 0 6px;
     background: #2671ff;
-    float: right;
+    float: left;
 }
 .msg-self .user-img {
     margin: 0 0 10px 10px;
 }
 .msg-self .msg {
-    text-align: right;
+    text-align: left;
 }
 .msg-self .timestamp {
-    text-align: right;
+    text-align: left;
 }

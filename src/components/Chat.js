@@ -30,7 +30,7 @@ console.log('socket: ', socket)
 //내가 한 말
 const MyComment = ({text}) => {
   return (
-    <article className="msg-container msg-remote" id="msg-0">
+    <article className="msg-container msg-self" id="msg-0">
       <div className="msg-box">
         <img className="user-img" id="user-0" alt="사용자 이미지" src="//gravatar.com/avatar/00034587632094500000000000000000?d=retro" />
         <div className="flr">
@@ -48,7 +48,7 @@ const MyComment = ({text}) => {
 //남이 한 말
 const OtherComment = ({text}) => {
   return (
-    <article className="msg-container msg-self" id="msg-0">
+    <article className="msg-container msg-remote" id="msg-0">
       <div className="msg-box">
         <div className="flr">
           <div className="messages">
