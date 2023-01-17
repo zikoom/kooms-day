@@ -106,22 +106,40 @@ const Chat = () => {
   const _MY_COMMENT = 1;
   const _OTHER_COMMENT = 2;
 
+
+  const [nickname, setNickname] = useState('');
+
   const [msgContainer, setMsgContainer] = useState([]);
   const [msgInput, setMsgInput] = useState('');
 
   const [roomInput, setRoomInput] = useState('');
   const [roomID, setRoomID] = useState('');
 
+
+  const [nicknameInput, setNicknameInput] = useState('');
+  const onChangeNicknameInput = (e) => {const {value} = e.target; setNicknameInput(value)}
+
+  const set_nickname_request = () => {
+
+    socket.emit('set_nickname_request', nicknameInput);
+    setNicknameInput('');
+  }
+
+
+
   const onMsgInputChange = (e) => {const {value} = e.target ;setMsgInput(value)}
   const onChangeRoomInput = (e) => {const {value} = e.target; setRoomInput(value)}
+
+  const get_nickname = (msg) => {
+    setNickname(msg);
+    console.log('nickname: ', msg);
+  }
 
   const enterRoom = (roomNumString) => {
     const roomNumber = Number(roomNumString);
     socket.emit('enter-room', roomNumber);
     setRoomInput('');
   }
-
-
 
   const addMsg = (type, text) => {
     if(!(type && text)) {console.log('type or text unvalid. return');}
@@ -160,71 +178,63 @@ const Chat = () => {
       addMsg(_OTHER_COMMENT, msg);
     })
 
+    socket.on('set_nickname_response', (msg) => {
+      get_nickname(msg);
+    })
+
     return () => {socket.disconnect()}
   }, [])
 
-  return (
-    <div className="chatbox-container">
-      <div className="chatbox-room">
-        <input value={roomInput} onChange={onChangeRoomInput} />
-        <button onClick={()=>{enterRoom(roomInput)}}>입장</button>
-        <h2>room Number: {roomID}</h2>
+  const Nickname = () => {
+    return (
+      <div>
+        <h1>닉네임을 입력하세요!!</h1>
+        <input value={nicknameInput} onChange={onChangeNicknameInput} />
+        <button onClick={set_nickname_request}>이걸로 할게요!!</button>
       </div>
-      <section className="chatbox">
-        <section className="chat-window">
-          {/* <article className="msg-container msg-remote" id="msg-0">
-            <div className="msg-box">
-              <img className="user-img" id="user-0" src="//gravatar.com/avatar/00034587632094500000000000000000?d=retro" />
-              <div className="flr">
-                <div className="messages">
-                  <p className="msg" id="msg-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius, neque non tristique tincidunt, mauris nunc efficitur erat, elementum semper justo odio id nisi.
-                  </p>
-                </div>
-                <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">3 minutes ago</span></span>
-              </div>
-            </div>
-          </article>
-          <article className="msg-container msg-self" id="msg-0">
-            <div className="msg-box">
-              <div className="flr">
-                <div className="messages">
-                  <p className="msg" id="msg-1">
-                    Lorem ipsum dolor sit amet
-                  </p>
-                  <p className="msg" id="msg-2">
-                    Praesent varius
-                  </p>
-                </div>
-                <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">2 minutes ago</span></span>
-              </div>
-              <img className="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
-            </div>
-          </article> */}
+    )
+  }
 
-          {
-            msgContainer.map((msg, idx) => {
-              if(msg.type === _MY_COMMENT){
-                return <MyComment text={msg.text} key={idx} />
-              }else if(msg.type === _OTHER_COMMENT){
-                return <OtherComment text={msg.text} key={idx} />
-              }else{
-                return <div>None</div>
-              }
-            })
-          }
+  const ChatBox = () => {
+    return (
+      <div className="chatbox-container">
+        <div className="chatbox-room">
+          <input value={roomInput} onChange={onChangeRoomInput} />
+          <button onClick={()=>{enterRoom(roomInput)}}>입장</button>
+          <h2>room Number: {roomID}</h2>
+        </div>
+        <section className="chatbox">
+          <section className="chat-window">
+            {
+              msgContainer.map((msg, idx) => {
+                if(msg.type === _MY_COMMENT){
+                  return <MyComment text={msg.text} key={idx} />
+                }else if(msg.type === _OTHER_COMMENT){
+                  return <OtherComment text={msg.text} key={idx} />
+                }else{
+                  return <div>None</div>
+                }
+              })
+            }
 
+          </section>
+
+          <form className="chat-input" onSubmit={handleSubmit}>
+            <input type="text" autoComplete="on" value={msgInput} onChange={onMsgInputChange} placeholder="Type a message" />
+            <button onClick={sendMsg}>
+                <SendMsgSVG />
+            </button>
+          </form>
         </section>
+      </div>
+    )
+  }
 
-        <form className="chat-input" onSubmit={handleSubmit}>
-          <input type="text" autoComplete="on" value={msgInput} onChange={onMsgInputChange} placeholder="Type a message" />
-          <button onClick={sendMsg}>
-              <SendMsgSVG />
-          </button>
-        </form>
-      </section>
-    </div>
-  )
+  if(nickname){
+    return <ChatBox />
+  }else{
+    return <Nickname />
+  }
 }
 
 export default Chat

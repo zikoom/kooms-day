@@ -1,5 +1,5 @@
 {
-  "PATH_TYPE": "DEV",
+  "PATH_TYPE": "LOCAL",
 
   "LOCAL":{
     "SOCKET_SERVER": "http://localhost:3000"
