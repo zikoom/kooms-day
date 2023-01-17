@@ -109,7 +109,19 @@ const Chat = () => {
   const [msgContainer, setMsgContainer] = useState([]);
   const [msgInput, setMsgInput] = useState('');
 
+  const [roomInput, setRoomInput] = useState('');
+  const [roomID, setRoomID] = useState('');
+
   const onMsgInputChange = (e) => {const {value} = e.target ;setMsgInput(value)}
+  const onChangeRoomInput = (e) => {const {value} = e.target; setRoomInput(value)}
+
+  const enterRoom = (roomNumString) => {
+    const roomNumber = Number(roomNumString);
+    socket.emit('enter-room', roomNumber);
+    setRoomInput('');
+  }
+
+
 
   const addMsg = (type, text) => {
     if(!(type && text)) {console.log('type or text unvalid. return');}
@@ -117,8 +129,12 @@ const Chat = () => {
   }
 
   const sendMsg = () => {
-    console.log('sendMsg in. msg: ', msgInput);
-    socket.emit('chat', msgInput);
+    const sendMsgObj = {
+      text: msgInput,
+      roomID: roomID
+    }
+    console.log('sendMsg in. msg: ', sendMsgObj);
+    socket.emit('chat', sendMsgObj);
     setMsgInput('');
   }
 
@@ -129,9 +145,19 @@ const Chat = () => {
       console.log('my Socket ID: ', _SOCKET_ID);
     })
 
-    socket.on('test', (msg) => {
+    socket.on('enter-room-confirm', (msg) => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setRoomID(msg);
+      console.log('RoomID: ', roomID);
+    })
+
+    socket.on('chat_response', (msg) => {
       console.log('chat_success recv. msg: ', msg);
       addMsg(_MY_COMMENT, msg);
+    })
+    socket.on('other_msg', (msg) => {
+      console.log('other_msg recv. msg: ', msg);
+      addMsg(_OTHER_COMMENT, msg);
     })
 
     return () => {socket.disconnect()}
@@ -139,7 +165,11 @@ const Chat = () => {
 
   return (
     <div className="chatbox-container">
-      <button onClick={() => {addMsg({type:1, text:'haha'})}}></button>
+      <div className="chatbox-room">
+        <input value={roomInput} onChange={onChangeRoomInput} />
+        <button onClick={()=>{enterRoom(roomInput)}}>입장</button>
+        <h2>room Number: {roomID}</h2>
+      </div>
       <section className="chatbox">
         <section className="chat-window">
           {/* <article className="msg-container msg-remote" id="msg-0">

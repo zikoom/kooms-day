@@ -13,6 +13,12 @@ html,
 	justify-content: center;
     flex-direction: column;
 }
+.chatbox-room{
+
+}
+.chatbox-room h2{
+    color: aliceblue
+}
 ::-webkit-scrollbar {
 	width: 4px;
 }
