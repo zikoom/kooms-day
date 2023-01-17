@@ -99,6 +99,16 @@ const socket = io(_SERVER_PATH, {
   rejectUnauthorized: false
 })
 
+const Nickname = ({nicknameInput, onChangeNicknameInput, set_nickname_request}) => {
+  return (
+    <div>
+      <h1>닉네임을 입력하세요!!</h1>
+      <input value={nicknameInput} onChange={onChangeNicknameInput} />
+      <button onClick={set_nickname_request}>이걸로 할게요!!</button>
+    </div>
+  )
+}
+
 const Chat = () => {
 
   let _SOCKET_ID = '';
@@ -185,16 +195,6 @@ const Chat = () => {
     return () => {socket.disconnect()}
   }, [])
 
-  const Nickname = () => {
-    return (
-      <div>
-        <h1>닉네임을 입력하세요!!</h1>
-        <input value={nicknameInput} onChange={onChangeNicknameInput} />
-        <button onClick={set_nickname_request}>이걸로 할게요!!</button>
-      </div>
-    )
-  }
-
   const ChatBox = () => {
     return (
       <div className="chatbox-container">
@@ -233,8 +233,9 @@ const Chat = () => {
   if(nickname){
     return <ChatBox />
   }else{
-    return <Nickname />
+    return <Nickname nicknameInput={nicknameInput} onChangeNicknameInput={onChangeNicknameInput} set_nickname_request={set_nickname_request} />
   }
 }
+
 
 export default Chat
