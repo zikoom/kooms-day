@@ -8,8 +8,9 @@ import { CHAT_ADD, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, S
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
-const PATH_TYPE = config['PATH_TYPE'];
+const PATH_TYPE = window.location.hostname === 'localhost' ? 'LOCAL' : 'DEV';
 const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
+
 
 const socket = io(_SERVER_PATH, {
   reconnectionDelay: 1000,
