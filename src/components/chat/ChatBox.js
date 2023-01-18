@@ -19,11 +19,7 @@ const SendMsgSVG = (props) => (
   </svg>
 );
 
-const chatWindow = document.getElementsByClassName('chat-window');
-console.log('chatWindow: ', chatWindow);
-
 const ChatBox = ({nickname, enterRoom, roomID, msgs, sendMsg}) => {
-  console.log('ChatBox render. roomdID: ', roomID);
 
   const _MY_COMMENT = 1;
   const _OTHER_COMMENT = 2;

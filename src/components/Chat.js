@@ -93,6 +93,7 @@ const Chat = () => {
     })
 
     socket.on('set_nickname_response', (msg) => {
+      console.log('set_nickname_response: ', msg);
       dispatch(SET_CHAT_NICKNAME(msg));
     })
 
