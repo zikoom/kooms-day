@@ -72,6 +72,7 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('init', (msg) => {
+      console.log('init in. :', msg);
       dispatch(SET_SOCKET_CONNECTION(true));
       dispatch(SET_SOCKET_ID(msg));
     })
