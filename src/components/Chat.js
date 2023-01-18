@@ -13,15 +13,7 @@ console.log('PATH_TYPE: ', PATH_TYPE);
 const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
 
 
-const socket = io(_SERVER_PATH, {
-  reconnectionDelay: 1000,
-  reconnection: true,
-  reconnectionAttemps: 10,
-  // transports: ['websocket'],
-  agent: false,
-  upgrade: false,
-  rejectUnauthorized: false
-})
+let socket = null;
 
 const Chat = () => {
 
@@ -71,6 +63,16 @@ const Chat = () => {
   }
 
   useEffect(() => {
+    socket = io(_SERVER_PATH, {
+      reconnectionDelay: 1000,
+      reconnection: true,
+      reconnectionAttemps: 10,
+      // transports: ['websocket'],
+      agent: false,
+      upgrade: false,
+      rejectUnauthorized: false
+    })
+
     socket.on('init', (msg) => {
       console.log('init in. :', msg);
       dispatch(SET_SOCKET_CONNECTION(true));
