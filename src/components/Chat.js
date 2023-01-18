@@ -4,34 +4,15 @@ import io from 'socket.io-client'
 import ".//../css/Chatbox.css"
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_SOCKET_CONNECTION } from '../action/actions';
+import { SET_SOCKET_CONNECTION, SET_SOCKET_ID, SET_SOCKET_NICKNAME } from '../action/actions';
+import ChatNickname from './chat/ChatNickname';
+
+const PATH_TYPE = config['PATH_TYPE'];
+const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
 
 console.log('cconfig: ', config);
-const PATH_TYPE = config['PATH_TYPE'];
 console.log('PATH_TYPE: ', PATH_TYPE)
-const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
 console.log('_SERVER_PATH: ', _SERVER_PATH);
-
-//메세지 구분용 상수
-
-// let _SOCKET_ID = '';
-
-// const socket = io(_SERVER_PATH, {
-//   reconnectionDelay: 1000,
-//   reconnection: true,
-//   reconnectionAttemps: 10,
-//   // transports: ['websocket'],
-//   agent: false,
-//   upgrade: false,
-//   rejectUnauthorized: false
-// })
-
-// socket.on('init', (msg) => {
-//   _SOCKET_ID = msg;
-//   console.log('my Socket ID: ', _SOCKET_ID);
-// })
-
-
 
 
 //내가 한 말
@@ -70,7 +51,7 @@ const OtherComment = ({text}) => {
     </article>
   )
 }
-//센드 메세지 컴포넌트
+//센드 메세지 SVG 컴포넌트
 const SendMsgSVG = (props) => (
   <svg
     style={{
@@ -101,27 +82,14 @@ const socket = io(_SERVER_PATH, {
   rejectUnauthorized: false
 })
 
-const Nickname = ({nicknameInput, onChangeNicknameInput, set_nickname_request}) => {
-  return (
-    <div>
-      <h1>닉네임을 입력하세요!!</h1>
-      <input value={nicknameInput} onChange={onChangeNicknameInput} />
-      <button onClick={set_nickname_request}>이걸로 할게요!!</button>
-    </div>
-  )
-}
-
 const Chat = () => {
-
-  const dispatch = useDispatch();
-  const isConnected = useSelector(state => {console.log('state: ', state); return state.socket.isConnected});
-
-  let _SOCKET_ID = '';
 
   const _MY_COMMENT = 1;
   const _OTHER_COMMENT = 2;
 
-  const [nickname, setNickname] = useState('');
+  const dispatch = useDispatch();
+  const isConnected = useSelector(state => state.socket.isConnected);
+  const nickname = useSelector(state => state.socket.nickname);
 
   const [msgContainer, setMsgContainer] = useState([]);
   const [msgInput, setMsgInput] = useState('');
@@ -130,24 +98,12 @@ const Chat = () => {
   const [roomID, setRoomID] = useState('');
 
 
-  const [nicknameInput, setNicknameInput] = useState('');
-  const onChangeNicknameInput = (e) => {const {value} = e.target; setNicknameInput(value)}
-
-  const set_nickname_request = () => {
-
-    socket.emit('set_nickname_request', nicknameInput);
-    setNicknameInput('');
+  const set_nickname_req = (nickname) => {
+    socket.emit('set_nickname_request', nickname);
   }
-
-
 
   const onMsgInputChange = (e) => {const {value} = e.target ;setMsgInput(value)}
   const onChangeRoomInput = (e) => {const {value} = e.target; setRoomInput(value)}
-
-  const get_nickname = (msg) => {
-    setNickname(msg);
-    console.log('nickname: ', msg);
-  }
 
   const enterRoom = (roomNumString) => {
     const roomNumber = Number(roomNumString);
@@ -172,11 +128,8 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('init', (msg) => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      _SOCKET_ID = msg;
-      console.log('my Socket ID: ', _SOCKET_ID);
-      // setIsConnected(true);
       dispatch(SET_SOCKET_CONNECTION(true));
+      dispatch(SET_SOCKET_ID(msg));
       console.log('isConnected: ', isConnected);
     })
 
@@ -196,16 +149,18 @@ const Chat = () => {
     })
 
     socket.on('set_nickname_response', (msg) => {
-      get_nickname(msg);
+      dispatch(SET_SOCKET_NICKNAME(msg));
     })
 
     return () => {socket.disconnect()}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const ChatBox = () => {
     return (
       <div className="chatbox-container">
         <div className="chatbox-room">
+          <h2>{nickname} 님 환영함니다 !!</h2>
           <input value={roomInput} onChange={onChangeRoomInput} />
           <button onClick={()=>{enterRoom(roomInput)}}>입장</button>
           <h2>room Number: {roomID}</h2>
@@ -240,7 +195,7 @@ const Chat = () => {
   if(isConnected && nickname){
     return <ChatBox />
   }else{
-    return <Nickname nicknameInput={nicknameInput} onChangeNicknameInput={onChangeNicknameInput} set_nickname_request={set_nickname_request} />
+    return <ChatNickname set_nickname_req={set_nickname_req} />
   }
 }
 
