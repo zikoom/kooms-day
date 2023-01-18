@@ -114,7 +114,7 @@ const Nickname = ({nicknameInput, onChangeNicknameInput, set_nickname_request}) 
 const Chat = () => {
 
   const dispatch = useDispatch();
-  const isConnected = useSelector(state => {console.log('state: ', state); return state.isConnected});
+  const isConnected = useSelector(state => {console.log('state: ', state); return state.socket.isConnected});
 
   let _SOCKET_ID = '';
 

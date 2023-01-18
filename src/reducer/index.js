@@ -1,11 +1,12 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import {
-  SET_SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE
+  SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE
 } from '../action/actions'
 
 function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
+  console.log('socketManger in. action: ', action);
   switch(action.type){
-    case SET_SOCKET_CONNECTION:
+    case SOCKET_CONNECTION:
       return {
         ...state,
         isConnected: action.state
@@ -16,5 +17,5 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
 }
 
 export default combineReducers({
-  socketManager,
+  socket: socketManager,
 })
