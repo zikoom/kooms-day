@@ -3,6 +3,8 @@ import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_SOCKET_CONNECTION } from '../action/actions';
 
 console.log('cconfig: ', config);
 const PATH_TYPE = config['PATH_TYPE'];
@@ -111,11 +113,13 @@ const Nickname = ({nicknameInput, onChangeNicknameInput, set_nickname_request}) 
 
 const Chat = () => {
 
+  const dispatch = useDispatch();
+  const isConnected = useSelector(state => {console.log('state: ', state); return state.isConnected});
+
   let _SOCKET_ID = '';
 
   const _MY_COMMENT = 1;
   const _OTHER_COMMENT = 2;
-
 
   const [nickname, setNickname] = useState('');
 
@@ -171,6 +175,9 @@ const Chat = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       _SOCKET_ID = msg;
       console.log('my Socket ID: ', _SOCKET_ID);
+      // setIsConnected(true);
+      dispatch(SET_SOCKET_CONNECTION(true));
+      console.log('isConnected: ', isConnected);
     })
 
     socket.on('enter-room-confirm', (msg) => {
@@ -230,7 +237,7 @@ const Chat = () => {
     )
   }
 
-  if(nickname){
+  if(isConnected && nickname){
     return <ChatBox />
   }else{
     return <Nickname nicknameInput={nicknameInput} onChangeNicknameInput={onChangeNicknameInput} set_nickname_request={set_nickname_request} />

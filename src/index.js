@@ -4,7 +4,6 @@ import {
   Route,
 } from "react-router-dom";
 
-import store from "./app/store";
 import { Provider } from "react-redux";
 
 import React from 'react';
@@ -18,6 +17,9 @@ import Clone2 from "./jaduguaza/Clone2";
 import PropsParent from "./jaduguaza/PropsParent";
 import NicoHook from "./jaduguaza/NicoHook";
 import GuestBook from "./jaduguaza/GuestBook";
+
+import store from "./store/store";
+
 
 
 
