@@ -1,5 +1,5 @@
 import { createStore } from '@reduxjs/toolkit'
-import reducers from '../reducer/index'
+import reducers from '../reducer/reducer'
 
 let store = createStore(
   reducers,

@@ -28,7 +28,7 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
     case CHAT_ADD_TEXT:
       return {
         ...state,
-        msgs: [...state.msgs, state]
+        msgs: [...state.msgs, action.state]
       }
     default:
       return state

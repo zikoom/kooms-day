@@ -4,16 +4,12 @@ import io from 'socket.io-client'
 import ".//../css/Chatbox.css"
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
+import { CHAT_ADD, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
 const PATH_TYPE = config['PATH_TYPE'];
 const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
-
-console.log('cconfig: ', config);
-console.log('PATH_TYPE: ', PATH_TYPE)
-console.log('_SERVER_PATH: ', _SERVER_PATH);
 
 const socket = io(_SERVER_PATH, {
   reconnectionDelay: 1000,
@@ -50,15 +46,25 @@ const Chat = () => {
 
   const addMsg = (type, text) => {
     if(!(type && text)) {console.log('type or text unvalid. return');}
+      dispatch(CHAT_ADD({type, text}))
   }
 
   const sendMsg = (text, roomID) => {
+    if(!(text && roomID)){return;}
     const sendMsgObj = {
+      nickname: nickname,
       text: text,
       roomID: roomID
     }
     console.log('sendMsg in. msg: ', sendMsgObj);
     socket.emit('chat', sendMsgObj);
+  }
+
+  const scrollDown = (elementID) => {
+    const element = document.getElementById(elementID);
+    if(element){
+      element.scrollTop = element.scrollHeight;
+    }
   }
 
   useEffect(() => {
@@ -76,6 +82,7 @@ const Chat = () => {
     socket.on('chat_response', (msg) => {
       console.log('chat_success recv. msg: ', msg);
       addMsg(_MY_COMMENT, msg);
+
     })
     socket.on('other_msg', (msg) => {
       console.log('other_msg recv. msg: ', msg);
@@ -89,6 +96,10 @@ const Chat = () => {
     return () => {socket.disconnect()}
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    scrollDown('chatbox-scroll-div');
+  }, [msgs])
 
   if(isConnected && nickname){
     return <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  />

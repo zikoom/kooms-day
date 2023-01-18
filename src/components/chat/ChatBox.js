@@ -19,6 +19,8 @@ const SendMsgSVG = (props) => (
   </svg>
 );
 
+const chatWindow = document.getElementsByClassName('chat-window');
+console.log('chatWindow: ', chatWindow);
 
 const ChatBox = ({nickname, enterRoom, roomID, msgs, sendMsg}) => {
   console.log('ChatBox render. roomdID: ', roomID);
@@ -31,6 +33,8 @@ const ChatBox = ({nickname, enterRoom, roomID, msgs, sendMsg}) => {
 
   const onChangeRoomInput = (e) => {const {value} = e.target; setRoomInput(value)}
   const onMsgInputChange = (e) => {const {value} = e.target; setMsgInput(value)}
+
+
   return (
     <div className="chatbox-container">
       <div className="chatbox-room">
@@ -40,7 +44,7 @@ const ChatBox = ({nickname, enterRoom, roomID, msgs, sendMsg}) => {
         <h2>room Number: {roomID}</h2>
       </div>
       <section className="chatbox">
-        <section className="chat-window">
+        <section className="chat-window" id="chatbox-scroll-div">
           {
             msgs.map((msg, idx) => {
               if(msg.type === _MY_COMMENT){
