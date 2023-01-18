@@ -38,6 +38,7 @@ const Chat = () => {
 
 
   const set_nickname_req = (nickname) => {
+    if(!nickname) {return;}
     socket.emit('set_nickname_request', nickname);
   }
 
