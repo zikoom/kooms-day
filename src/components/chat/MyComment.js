@@ -1,4 +1,4 @@
-const MyComment = ({text}) => {
+const MyComment = ({text, nickname}) => {
   return (
     <article className="msg-container msg-self" id="msg-0">
       <div className="msg-box">
@@ -9,7 +9,10 @@ const MyComment = ({text}) => {
               {text}
             </p>
           </div>
-          <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">3 minutes ago</span></span>
+          <span className="timestamp">
+            <span className="username">{nickname}</span>
+            {/* &bull;<span className="posttime">3 minutes ago</span> */}
+          </span>
         </div>
       </div>
     </article>

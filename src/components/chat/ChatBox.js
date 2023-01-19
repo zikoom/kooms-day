@@ -44,9 +44,9 @@ const ChatBox = ({nickname, enterRoom, roomID, msgs, sendMsg}) => {
           {
             msgs.map((msg, idx) => {
               if(msg.type === _MY_COMMENT){
-                return <MyComment text={msg.text} key={idx} />
+                return <MyComment text={msg.text} nickname={msg.nickname} key={idx} />
               }else if(msg.type === _OTHER_COMMENT){
-                return <OtherComment text={msg.text} key={idx} />
+                return <OtherComment text={msg.text} nickname={msg.nickname} key={idx} />
               }else{
                 return null
               }

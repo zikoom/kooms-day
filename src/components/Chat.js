@@ -26,9 +26,6 @@ const Chat = () => {
   const roomID = useSelector(state => state.socket.roomID)
   const msgs = useSelector(state => state.socket.msgs)
 
-  console.log('Chat render roomID: ', roomID);
-
-
   const set_nickname_req = (nickname) => {
     if(!nickname) {return;}
     socket.emit('set_nickname_request', nickname);
@@ -39,9 +36,9 @@ const Chat = () => {
     socket.emit('enter-room', roomNumber);
   }
 
-  const addMsg = (type, text) => {
+  const addMsg = (type, {nickname, text}) => {
     if(!(type && text)) {console.log('type or text unvalid. return');}
-      dispatch(CHAT_ADD({type, text}))
+      dispatch(CHAT_ADD({type, text, nickname}))
   }
 
   const sendMsg = (text, roomID) => {
@@ -104,6 +101,8 @@ const Chat = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+
+  //채팅 자동 스크롤
   useEffect(() => {
     scrollDown('chatbox-scroll-div');
   }, [msgs])
