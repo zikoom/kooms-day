@@ -10,10 +10,10 @@ const ChatNickname = ({set_nickname_req}) => {
   const onChangeNicknameInput = (e) => {const {value} = e.target; setNicknameInput(value)};
 
   return (
-    <div>
-      <h1>닉네임을 입력하세요!!</h1>
-      <input value={nicknameInput} onChange={onChangeNicknameInput} />
-      <button onClick={() => {set_nickname_req(nicknameInput); setNicknameInput('')}}>이걸로 할게요!!</button>
+    <div className="center-wrapper nickname-wrapper">
+      <h1 className="child">닉네임을 입력하세요!!</h1>
+      <input className="child" value={nicknameInput} onChange={onChangeNicknameInput} />
+      <button className="child" onClick={() => {set_nickname_req(nicknameInput); setNicknameInput('')}}>이걸로 할게요!!</button>
     </div>
   )
 }

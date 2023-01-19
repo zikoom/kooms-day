@@ -53,6 +53,16 @@ html, body{
 
 }
 
+.center-wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 main{
   width: 100%;
   height: 100%;
@@ -66,10 +76,27 @@ main{
     padding-left: 0;
   }
 
+  .center-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .center-wrapper.nickname-wrapper{
+    color: orange;
+
+    .child{
+      margin-bottom: 5px;
+    }
+  }
+
+
+
   .nav{
     opacity: 0;
     z-index: -1;
-    top: -100px;
+    top: -200px;
   }
 
   .nav.on{
