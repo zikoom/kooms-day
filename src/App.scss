@@ -61,6 +61,21 @@ html, body{
   align-items: center;
 }
 
+.center-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.center-wrapper.nickname-wrapper{
+  color: orange;
+
+  .child{
+    margin-bottom: 5px;
+  }
+}
+
 
 
 main{
@@ -75,24 +90,6 @@ main{
   main{
     padding-left: 0;
   }
-
-  .center-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-
-  .center-wrapper.nickname-wrapper{
-    color: orange;
-
-    .child{
-      margin-bottom: 5px;
-    }
-  }
-
-
-
   .nav{
     opacity: 0;
     z-index: -1;
