@@ -7,6 +7,7 @@ export const CHAT_ID = 'CHAT/ID'
 export const CHAT_ROOMID = 'CHAT/ROOMID'
 export const CHAT_NICKNAME = 'CHAT/NICKNAME'
 export const CHAT_ADD_TEXT = 'CHAT/ADD_TEXT'
+export const CHAT_CLEAR_TEXT = 'CHAT/CLEAR_TEXT'
 
 /**
  * initial State
@@ -43,4 +44,8 @@ export function SET_CHAT_NICKNAME(state) {
 
 export function CHAT_ADD(state) {
   return { type: CHAT_ADD_TEXT, state}
+}
+
+export function CHAT_CLEAR() {
+  return { type: CHAT_CLEAR_TEXT}
 }

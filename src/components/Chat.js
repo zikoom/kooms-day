@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 import ".//../css/Chatbox.css"
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHAT_ADD, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
+import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
@@ -33,6 +33,11 @@ const Chat = () => {
 
   const enterRoom = (roomNumString) => {
     const roomNumber = Number(roomNumString);
+    if(isNaN(roomNumber) || roomNumber <= 0){
+      console.log(`not valid roomNumber:${roomNumber}`);
+      alert("방번호가 잘못되얐어요 !! 0 보다 큰 정수를 입력해 주세요");
+      return;
+    }
     socket.emit('enter-room', roomNumber);
   }
 
@@ -80,6 +85,7 @@ const Chat = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       console.log('enter-room-confirm. msg: ', msg);
       dispatch(SET_CHAT_ROOM_ID(msg));
+      dispatch(CHAT_CLEAR())
     })
 
     socket.on('chat_response', (msg) => {

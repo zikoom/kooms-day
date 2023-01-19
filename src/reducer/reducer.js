@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import {
-  SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE, CHAT_ID, CHAT_NICKNAME, CHAT_ADD_TEXT, CHAT_ROOMID
+  SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE, CHAT_ID, CHAT_NICKNAME, CHAT_ADD_TEXT, CHAT_ROOMID, CHAT_CLEAR_TEXT
 } from '../action/actions'
 
 function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
@@ -29,6 +29,11 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
       return {
         ...state,
         msgs: [...state.msgs, action.state]
+      }
+    case CHAT_CLEAR_TEXT:
+      return {
+        ...state,
+        msgs: []
       }
     default:
       return state
