@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
+import ChatRooms from './chat/ChatRooms';
 
 const PATH_TYPE = window.location.hostname === 'localhost' ? 'LOCAL' : 'DEV';
 console.log('PATH_TYPE: ', PATH_TYPE);
@@ -114,7 +115,12 @@ const Chat = () => {
   }, [msgs])
 
   if(isConnected && nickname){
-    return <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  />
+    return (
+      <div className="center-wrapper chat-container">
+        <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  />
+        <ChatRooms />
+      </div>
+    )
   }else{
     return <ChatNickname set_nickname_req={set_nickname_req} />
   }
