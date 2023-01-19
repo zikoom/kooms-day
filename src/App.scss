@@ -25,6 +25,8 @@ html, body{
 
 .header{
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   // margin: 0 auto;
   height: $HEADER_HEIGHT;
 
@@ -32,6 +34,10 @@ html, body{
 
   z-index: 100;
   background-color: black;
+
+  .hamburgur{
+    display: none;
+  }
 }
 
 .nav{
@@ -66,6 +72,12 @@ main{
     .nav-flex-child{
       align-items: center;
       margin-bottom: 5px;
+    }
+  }
+
+  .header {
+    .hamburgur {
+      display: block;
     }
   }
 }
