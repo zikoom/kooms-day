@@ -55,6 +55,20 @@ main{
   padding-top: $HEADER_HEIGHT;
 }
 
+@media (max-width: 991px) {
+  .nav{
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: $HEADER_HEIGHT;
+    box-sizing: border-box;
+
+    .nav-flex-child{
+      align-items: center;
+      margin-bottom: 5px;
+    }
+  }
+}
 
 
 
