@@ -62,7 +62,15 @@ main{
 }
 
 @media (max-width: 991px) {
+  main{
+    padding-left: 0;
+  }
+
   .nav{
+    display: none;
+  }
+
+  .nav.on{
     display: block;
     width: 100%;
     height: auto;

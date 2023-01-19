@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import './NavBar.scss'
 // import { login, logout} from '../../app/reducers/loginManager'
 
-function NavBar(){
+function NavBar({showMobileMenu}){
   const provider = new GoogleAuthProvider();
   // const auth = getAuth();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -32,7 +32,7 @@ function NavBar(){
   //   }
   // }
   return (
-    <nav className="nav">
+    <nav className={"nav" + (showMobileMenu ? ' on' : '')}>
       {/* {
         loginState ?
         <div className="user-info">
