@@ -47,7 +47,7 @@ function oauthManager(state = ACTION_OAUTH_INIT_STATE, action) {
     case OAUTH_SET_MANAGER:
       return {
         ...state,
-        oauthManger: action.state
+        oauthManager: action.state
       }
     default:
       return state
