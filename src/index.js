@@ -37,7 +37,7 @@ root.render(
           <Route path="guest-book" element={<GuestBook></GuestBook>} />
           <Route path="chat" element={<Chat></Chat>} />
           <Route path="login" element={<Login />}>
-
+            <Route path="callback" element={<Login />}></Route>
           </Route>
           <Route path="zaduguaza">
             <Route path="main" element={<Mine />} />

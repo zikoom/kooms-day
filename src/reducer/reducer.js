@@ -3,7 +3,7 @@ import {
   SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE, CHAT_ID, CHAT_NICKNAME, CHAT_ADD_TEXT, CHAT_ROOMID, CHAT_CLEAR_TEXT
 } from '../action/actions'
 
-import { ACTION_OAUTH_INIT_STATE, OAUTH_SET_MANAGER } from "../action/oauth_actions";
+import { ACTION_GOOGLE_OAUTH_INIT_STATE, GOOGLE_OAUTH_SET_MANAGER, GOOGLE_OAUTH_SET_TOKEN } from "../action/oauth_actions";
 
 function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
   switch(action.type){
@@ -42,12 +42,20 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
   }
 }
 
-function oauthManager(state = ACTION_OAUTH_INIT_STATE, action) {
+function oauthManager(state = ACTION_GOOGLE_OAUTH_INIT_STATE, action) {
   switch(action.type){
-    case OAUTH_SET_MANAGER:
+    case GOOGLE_OAUTH_SET_MANAGER:
       return {
         ...state,
-        oauthManager: action.state
+        auth_uri: action.state.auth_uri,
+        client_id: action.state.client_id,
+        client_secret: action.state.client_secret,
+      }
+
+    case GOOGLE_OAUTH_SET_TOKEN:
+      return {
+        ...state,
+        access_token: action.state
       }
     default:
       return state
@@ -56,5 +64,5 @@ function oauthManager(state = ACTION_OAUTH_INIT_STATE, action) {
 
 export default combineReducers({
   socket: socketManager,
-  oauth: oauthManager
+  googleOauth: oauthManager
 })
