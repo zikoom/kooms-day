@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import loadOauthSecret from './js/oauth';
 import { SET_GOOGLE_OAUTH_ACCESS_TOKEN } from './action/oauth_actions';
+import { USERINFO_SET_NAME } from './action/userinfo_actions';
 
 function App() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /**
    *
@@ -21,16 +23,22 @@ function App() {
     const accessToken = queryParams.get('access_token');
     //리다이렉트할 path. 사용자가 로그인에 접근한 라우트
     const navigatePath = queryParams.get('#state');
-    console.log('accessToken, navigatePath: ', accessToken, navigatePath)
 
 
     if(accessToken && navigatePath){
-      dispatch(SET_GOOGLE_OAUTH_ACCESS_TOKEN(accessToken))
+
       const userInfoGoogleAPIURL = 'https://www.googleapis.com/oauth2/v1/userinfo';
       const requestURL = userInfoGoogleAPIURL + `?access_token=${accessToken}`
       const result = await (await fetch(requestURL)).json();
-      console.log('result: ', result);
-    }else{
+
+      try{
+        dispatch(SET_GOOGLE_OAUTH_ACCESS_TOKEN(accessToken))
+        dispatch(USERINFO_SET_NAME(result.name))
+        navigate(navigatePath);
+
+      }catch(e){
+        console.log(`err during get using google api:${userInfoGoogleAPIURL}. access_token:${accessToken}`)
+      }
 
     }
 

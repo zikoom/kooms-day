@@ -4,6 +4,9 @@ import {
 } from '../action/actions'
 
 import { ACTION_GOOGLE_OAUTH_INIT_STATE, GOOGLE_OAUTH_SET_MANAGER, GOOGLE_OAUTH_SET_TOKEN } from "../action/oauth_actions";
+import { USERINFO_INIT_STATE, USERINFO_SETNAME } from "../action/userinfo_actions";
+
+
 
 function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
   switch(action.type){
@@ -61,8 +64,21 @@ function oauthManager(state = ACTION_GOOGLE_OAUTH_INIT_STATE, action) {
       return state
   }
 }
+function userinfo(state = USERINFO_INIT_STATE, action) {
+  switch(action.type){
+    case USERINFO_SETNAME:
+      return {
+        ...state,
+        name: action.state
+      }
+
+    default:
+      return state
+  }
+}
 
 export default combineReducers({
   socket: socketManager,
-  googleOauth: oauthManager
+  googleOauth: oauthManager,
+  userinfo: userinfo
 })
