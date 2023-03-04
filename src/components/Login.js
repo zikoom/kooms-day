@@ -19,7 +19,6 @@ export default function Login () {
 
   return (
     <div>
-      <h1>로그인 페이지 임다!</h1>
       <button onClick={requestGoogleLogin}>로그인 해봅시다 !!</button>
     </div>
   )

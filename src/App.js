@@ -15,7 +15,7 @@ function App() {
 
   /**
    *
-   * @returns 유효한 토큰이 있으면 true -> login 처리 or false
+   * @returns 유효한 토큰이 있으면 로그인 처리
    */
   const checkGooglOauthLogin = async () => {
     const queryParams = new URLSearchParams(window.location.hash)
