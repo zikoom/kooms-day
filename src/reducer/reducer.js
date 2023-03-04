@@ -4,7 +4,7 @@ import {
 } from '../action/actions'
 
 import { ACTION_GOOGLE_OAUTH_INIT_STATE, GOOGLE_OAUTH_SET_MANAGER, GOOGLE_OAUTH_SET_TOKEN } from "../action/oauth_actions";
-import { USERINFO_INIT_STATE, USERINFO_SETNAME } from "../action/userinfo_actions";
+import { USERINFO_INIT_STATE, USERINFO_SETLOGIN, USERINFO_SETNAME } from "../action/userinfo_actions";
 
 
 
@@ -66,12 +66,19 @@ function oauthManager(state = ACTION_GOOGLE_OAUTH_INIT_STATE, action) {
 }
 function userinfo(state = USERINFO_INIT_STATE, action) {
   switch(action.type){
+
     case USERINFO_SETNAME:
       return {
         ...state,
         name: action.state
       }
 
+    case USERINFO_SETLOGIN:
+      return {
+        ...state,
+        isUserLogin: action.state
+      }
+    
     default:
       return state
   }

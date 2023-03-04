@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import loadOauthSecret from './js/oauth';
 import { SET_GOOGLE_OAUTH_ACCESS_TOKEN } from './action/oauth_actions';
-import { USERINFO_SET_NAME } from './action/userinfo_actions';
+import { USERINFO_SET_LOGIN, USERINFO_SET_NAME } from './action/userinfo_actions';
 
 function App() {
 
@@ -27,12 +27,15 @@ function App() {
 
     if(accessToken && navigatePath){
 
+      
       const userInfoGoogleAPIURL = 'https://www.googleapis.com/oauth2/v1/userinfo';
       const requestURL = userInfoGoogleAPIURL + `?access_token=${accessToken}`
-      const result = await (await fetch(requestURL)).json();
-
+      
       try{
+        const result = await (await fetch(requestURL)).json();
+
         dispatch(SET_GOOGLE_OAUTH_ACCESS_TOKEN(accessToken))
+        dispatch(USERINFO_SET_LOGIN(true))
         dispatch(USERINFO_SET_NAME(result.name))
         navigate(navigatePath);
 
