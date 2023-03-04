@@ -1,7 +1,7 @@
 
 import { useSelector } from "react-redux"
 
-export default function Login () {
+export default function LoginButton () {
 
   const oauthInfo = useSelector(state => state.googleOauth);
 

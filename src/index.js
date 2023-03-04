@@ -17,7 +17,6 @@ import Clone2 from "./jaduguaza/Clone2";
 import PropsParent from "./jaduguaza/PropsParent";
 import NicoHook from "./jaduguaza/NicoHook";
 import GuestBook from "./jaduguaza/GuestBook";
-import Login from "./components/Login";
 
 import store from "./store/store";
 
@@ -36,9 +35,6 @@ root.render(
           <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
           <Route path="guest-book" element={<GuestBook></GuestBook>} />
           <Route path="chat" element={<Chat></Chat>} />
-          <Route path="login" element={<Login />}>
-            <Route path="callback" element={<Login />}></Route>
-          </Route>
           <Route path="zaduguaza">
             <Route path="main" element={<Mine />} />
             <Route path="clone2" element={<Clone2 />} />

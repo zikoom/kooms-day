@@ -4,7 +4,7 @@ import {
 } from '../action/actions'
 
 import { ACTION_GOOGLE_OAUTH_INIT_STATE, GOOGLE_OAUTH_SET_MANAGER, GOOGLE_OAUTH_SET_TOKEN } from "../action/oauth_actions";
-import { USERINFO_INIT_STATE, USERINFO_SETLOGIN, USERINFO_SETNAME } from "../action/userinfo_actions";
+import { USERINFO_INIT_STATE, USERINFO_SETLOGIN, USERINFO_SETLOGOUT, USERINFO_SETNAME } from "../action/userinfo_actions";
 
 
 
@@ -76,7 +76,13 @@ function userinfo(state = USERINFO_INIT_STATE, action) {
     case USERINFO_SETLOGIN:
       return {
         ...state,
-        isUserLogin: action.state
+        isUserLogin: true
+      }
+    case USERINFO_SETLOGOUT:
+      return {
+        ...state,
+        isUserLogin: false,
+        name: '',
       }
     
     default:

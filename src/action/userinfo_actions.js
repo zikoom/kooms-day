@@ -4,6 +4,7 @@
 
 
 export const USERINFO_SETLOGIN = 'USERINFO/SET_LOGIN'
+export const USERINFO_SETLOGOUT = 'USERINFO/SET_LOGOUT'
 export const USERINFO_SETNAME = 'USERINFO/SET_NAME'
 
 
@@ -20,8 +21,11 @@ export const USERINFO_INIT_STATE = {
  * OAUTH action creators
  */
 
-export function USERINFO_SET_LOGIN(state) {
-  return { type: USERINFO_SETLOGIN, state}
+export function USERINFO_SET_LOGIN() {
+  return { type: USERINFO_SETLOGIN}
+}
+export function USERINFO_SET_LOGOUT() {
+  return { type: USERINFO_SETLOGOUT}
 }
 export function USERINFO_SET_NAME(state) {
   return { type: USERINFO_SETNAME, state}
