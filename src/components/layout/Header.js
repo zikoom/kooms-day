@@ -14,7 +14,16 @@ function Hedaer({toggleMobileMenu}){
 
       {/* mobile header */}
       <div className="header-moblie">
-        <img src={hamburgurImgURL} onClick={toggleMobileMenu} alt='haha' />
+        <img src={hamburgurImgURL} onClick={toggleMobileMenu} alt='hamburgur-button' />
+        {
+          isUserLogin
+          ? <div>
+              <h1>{userName}님 환영합니다 !!</h1>
+              <LogoutButton />
+            </div>
+          : <Login />
+
+        }
 
       </div>
 
