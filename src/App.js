@@ -7,6 +7,7 @@ import Layout from './components/layout/Layout';
 import loadOauthSecret from './js/oauth';
 import { SET_GOOGLE_OAUTH_ACCESS_TOKEN } from './action/oauth_actions';
 import { USERINFO_SET_LOGIN, USERINFO_SET_NAME } from './action/userinfo_actions';
+import axios from 'axios';
 
 function App() {
 
@@ -27,10 +28,10 @@ function App() {
 
     if(accessToken && navigatePath){
 
-      
+
       const userInfoGoogleAPIURL = 'https://www.googleapis.com/oauth2/v1/userinfo';
       const requestURL = userInfoGoogleAPIURL + `?access_token=${accessToken}`
-      
+
       try{
         const result = await (await fetch(requestURL)).json();
 
@@ -52,6 +53,11 @@ function App() {
     checkGooglOauthLogin();
   })
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/users').then((res) => {
+      console.log('res: ', res);
+    })
+  }, [])
 
 
   return (
