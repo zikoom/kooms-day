@@ -54,7 +54,7 @@ function App() {
   })
 
   useEffect(() => {
-    axios.get('https://34.134.138.247/api/users').then((res) => {
+    axios.get('http://34.134.138.247/api/users').then((res) => {
       console.log('res: ', res);
     })
   }, [])
