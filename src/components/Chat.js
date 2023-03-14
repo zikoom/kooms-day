@@ -8,7 +8,7 @@ import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_C
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
-const PATH_TYPE = window.location.hostname === 'localhost' ? 'LOCAL' : 'DEV';
+const PATH_TYPE = config['PATH_TYPE'];
 console.log('PATH_TYPE: ', PATH_TYPE);
 const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
 
