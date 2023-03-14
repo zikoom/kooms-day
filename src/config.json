@@ -2,8 +2,8 @@
   "PATH_TYPE": "DEV",
 
   "LOCAL":{
-    "SERVER_PATH:" : "http://localhost:3000",
-    "SOCKET_SERVER": "http://localhost:6000"
+    "SERVER_PATH:" : "http://localhost:3000/",
+    "SOCKET_SERVER": "http://localhost:6000/"
   },
 
   "DEV":{
