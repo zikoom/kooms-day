@@ -16,6 +16,10 @@ export default function LoginButton () {
     window.location.href = loginRequestURL
   }
 
+  // const requestGooglLoginURL = () => {
+
+  // }
+
 
   return (
     <div>

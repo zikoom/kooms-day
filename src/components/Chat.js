@@ -1,4 +1,3 @@
-import config from '../config.json'
 import io from 'socket.io-client'
 
 import ".//../css/Chatbox.css"
@@ -8,9 +7,7 @@ import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_C
 import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
-const PATH_TYPE = config['PATH_TYPE'];
-console.log('PATH_TYPE: ', PATH_TYPE);
-const _SERVER_PATH = config[PATH_TYPE]['SOCKET_SERVER'];
+const _SERVER_PATH = process.env.REACT_APP_SOCKET_SERVER;
 
 
 let socket = null;
