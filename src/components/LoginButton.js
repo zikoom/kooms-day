@@ -1,25 +1,15 @@
+import axios from 'axios';
 
-import { useSelector } from "react-redux"
+const loginRequestURL = () => {
+  return axios.get(process.env.REACT_APP_SERVER_PATH + '/auth/googleOauthURL')
+}
 
 export default function LoginButton () {
 
-  const oauthInfo = useSelector(state => state.googleOauth);
-
-  const requestGoogleLogin = () => {
-    if(oauthInfo === null || oauthInfo === undefined) {
-      throw new Error('oauthInfo is unvalid: ', oauthInfo);
-    }
-
-    const {auth_uri, client_id, scope, redirect_uri} = oauthInfo;
-    const loginRequestURL = `${auth_uri}?scope=${scope}&response_type=token&redirect_uri=${redirect_uri}&client_id=${client_id}&state=${window.location.pathname}`
-    console.log('loginRequestURL: ', loginRequestURL)
-    window.location.href = loginRequestURL
+  const requestGoogleLogin = async () => {
+    const res = await loginRequestURL();
+   window.location.href = res.data.url;
   }
-
-  // const requestGooglLoginURL = () => {
-
-  // }
-
 
   return (
     <div>

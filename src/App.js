@@ -7,7 +7,7 @@ import Layout from './components/layout/Layout';
 import loadOauthSecret from './js/oauth';
 import { SET_GOOGLE_OAUTH_ACCESS_TOKEN } from './action/oauth_actions';
 import { USERINFO_SET_LOGIN, USERINFO_SET_NAME } from './action/userinfo_actions';
-import axios from 'axios';
+
 
 
 
@@ -54,12 +54,6 @@ function App() {
     loadOauthSecret(dispatch);
     checkGooglOauthLogin();
   })
-
-  useEffect(() => {
-    axios.get('https://www.koomsday.com/api/users').then((res) => {
-      console.log('res: ', res);
-    })
-  }, [])
 
 
   return (
