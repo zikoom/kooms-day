@@ -7,9 +7,13 @@ const loginRequestURL = () => {
 export default function LoginButton () {
 
   const requestGoogleLogin = async () => {
-    const res = await loginRequestURL();
-    console.log('res: ', res);
-    // window.location.href = res.data.url;
+    try {
+      const res = await loginRequestURL();
+      window.location.href = res.data.url;
+
+    } catch (error) {
+      console.log('loginRequestURL err. ', error);
+    }
   }
 
   return (

@@ -19,6 +19,7 @@ import NicoHook from "./jaduguaza/NicoHook";
 import GuestBook from "./jaduguaza/GuestBook";
 
 import store from "./store/store";
+import Oauth2callback from "./components/auth/Oauth2callback";
 
 
 
@@ -40,6 +41,9 @@ root.render(
             <Route path="clone2" element={<Clone2 />} />
             <Route path="props" element={<PropsParent />} />
             <Route path="nico-hook" element={<NicoHook />} />
+          </Route>
+          <Route path="auth">
+             <Route path="oauth2callback" element={<Oauth2callback />} />
           </Route>
         </Route>
       </Routes>
