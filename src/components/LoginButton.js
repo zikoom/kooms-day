@@ -8,8 +8,8 @@ export default function LoginButton () {
 
   const requestGoogleLogin = async () => {
     const res = await loginRequestURL();
-    window.location.href = res.data.url;
     console.log('res: ', res);
+    // window.location.href = res.data.url;
   }
 
   return (
