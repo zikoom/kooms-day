@@ -8,11 +8,10 @@ const CommonPopup = (props) => {
     return (
       <div style={{background : '#D3CAC4', width: '200px', height: '200px'}}>
         <div>
-          컨텐츠
+          컨텐츠컨텐츠컨텐츠컨텐츠
         </div>
         <div>
-          버튼 존
-          <button>확인</button>
+          <button onClick={confirm ? confirm : () => {}}>확인</button>
           <button onClick={close}>취소</button>
         </div>
       </div>
