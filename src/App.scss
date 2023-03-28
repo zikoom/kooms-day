@@ -46,7 +46,7 @@ html, body{
     height: $HEADER_HEIGHT;
     display: block;
   }
-  
+
   .header-moblie{
     height: $HEADER_HEIGHT;
     display: none;
@@ -104,6 +104,34 @@ main{
   padding-top: $HEADER_HEIGHT;
 }
 
+.dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .2s, opacity .2s;
+}
+.dialog-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+.dialog-container .backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.6);
+  z-index: -1;
+}
+
 @media (max-width: 991px) {
   main{
     padding-left: 0;
@@ -134,7 +162,7 @@ main{
     .header-pc{
       display: none;
     }
-  
+
     .header-moblie{
       display: flex;
     }
