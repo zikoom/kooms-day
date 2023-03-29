@@ -18,7 +18,9 @@ export default function LoginButton () {
     } catch (error) {
       console.log('loginRequestURL err. ', error);
     } finally{
-      dispatch(SET_LOADING_DISPLAY(false));
+      setTimeout(() => {
+        dispatch(SET_LOADING_DISPLAY(false));
+      }, 1500);
     }
   }
 
