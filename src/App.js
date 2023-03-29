@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 
 import Layout from './components/layout/Layout';
 import loadOauthSecret from './js/oauth';
@@ -54,12 +55,14 @@ function App() {
   useEffect(() => {
     loadOauthSecret(dispatch);
     checkGooglOauthLogin();
+
   })
 
+  const isDisplay = useSelector(state => state.loadingManager.isDisplay)
 
   return (
     <div className="App">
-      <Loading />
+      {isDisplay ? <Loading /> : null}
       <Layout />
     </div>
   );
