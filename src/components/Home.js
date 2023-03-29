@@ -8,8 +8,7 @@ function Home(){
     <div>
       <h1>Home!</h1>
       <button onClick={toggle}>테스트 토글</button>
-      {/* <CommonPopup isOpen={showPopup} close={()=>{setShowPopup(false)}} /> */}
-      <CommonPopup isOpen={showPopup}  />
+      <CommonPopup isOpen={showPopup} close={()=>{setShowPopup(false)}} />
     </div>
   )
 }

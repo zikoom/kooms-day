@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 const CommonPopup = (props) => {
   const {isOpen, close, confirm, innerComponent} = props;
 
-  const defaultContent = () => {
+  const DefaultContent = (props) => {
+    const {close, confirm} = props;
     return (
       <div style={{background : '#D3CAC4', width: '200px', height: '200px'}}>
         <div>
@@ -20,7 +21,7 @@ const CommonPopup = (props) => {
 
   return (
     <div className={isOpen ? 'dialog-container active' : 'dialog-container'}>
-      {isValidElement(innerComponent) ? innerComponent : defaultContent()}
+      {isValidElement(innerComponent) ? <innerComponent /> : <DefaultContent close={close} confirm={confirm} />}
       <div className="backdrop"></div>
     </div>
   )

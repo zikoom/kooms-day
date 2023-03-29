@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-import ".//../css/Chatbox.css"
+import "../assets/css/Chatbox.css"
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
