@@ -1,9 +1,9 @@
-import axios from 'axios';
+import _request from '../api/api';
 import { useDispatch } from 'react-redux';
 import { SET_LOADING_DISPLAY } from '../action/loading';
 
 const loginRequestURL = () => {
-  return axios.get(process.env.REACT_APP_SERVER_PATH + '/auth/googleOauthURL')
+  return _request.get('/auth/googleOauthURL')
 }
 
 export default function LoginButton () {
