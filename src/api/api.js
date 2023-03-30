@@ -14,7 +14,12 @@ const _request = axios.create({
 
 _request.defaults.timeout = 2000;
 
-// _request.interceptors.request.use()
+_request.interceptors.response.use((res) => {
+  console.log('res: ', res);
+  return res;
+}, (error) => {
+  return Promise.reject(error);
+})
 
 
 
