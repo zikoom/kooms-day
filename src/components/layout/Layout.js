@@ -2,7 +2,6 @@
 import Hedaer from "./Header";
 import Content from "./Content";
 
-import '../../scss/App.scss'
 import { useState } from "react";
 
 function Layout(){

@@ -9,6 +9,9 @@ import loadOauthSecret from './js/oauth';
 import { SET_GOOGLE_OAUTH_ACCESS_TOKEN } from './action/oauth_actions';
 import { USERINFO_SET_LOGIN, USERINFO_SET_NAME } from './action/userinfo_actions';
 import Loading from './components/Loading';
+import Overlay from './components/layout/Overlay';
+
+import '../src/scss/App.scss'
 
 
 
@@ -58,10 +61,12 @@ function App() {
   })
 
   const isDisplay = useSelector(state => state.loadingManager.isDisplay)
+  // const overayOpacity = use
 
   return (
     <div className="App">
       {isDisplay ? <Loading /> : null}
+      <Overlay />
       <Layout />
     </div>
   );
