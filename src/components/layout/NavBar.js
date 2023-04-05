@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import './NavBar.scss'
 // import { login, logout} from '../../app/reducers/loginManager'
 
 function NavBar({showMobileMenu}){

@@ -2,7 +2,7 @@ import NavBar from "./NavBar";
 import Hedaer from "./Header";
 import Content from "./Content";
 
-import '../../App.scss'
+import '../../scss/App.scss'
 import { useState } from "react";
 
 function Layout(){
