@@ -9,17 +9,17 @@ import { Provider } from "react-redux";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Home from './components/Home'
-import WebGL from "./components/WebGL";
-import Chat from "./components/Chat";
-import Mine from "./jaduguaza/Mine";
-import Clone2 from "./jaduguaza/Clone2";
-import PropsParent from "./jaduguaza/PropsParent";
-import NicoHook from "./jaduguaza/NicoHook";
-import GuestBook from "./jaduguaza/GuestBook";
+// import Home from './components/Home'
+// import WebGL from "./components/WebGL";
+// import Chat from "./components/Chat";
+// import Mine from "./jaduguaza/Mine";
+// import Clone2 from "./jaduguaza/Clone2";
+// import PropsParent from "./jaduguaza/PropsParent";
+// import NicoHook from "./jaduguaza/NicoHook";
+// import GuestBook from "./jaduguaza/GuestBook";
 
 import store from "./store/store";
-import Oauth2callback from "./components/auth/Oauth2callback";
+// import Oauth2callback from "./components/auth/Oauth2callback";
 
 
 
@@ -31,7 +31,7 @@ root.render(
       <Provider store={store}>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
+          {/* <Route index element={<Home />} />
           <Route path="webgl" element={<WebGL />} />
           <Route path="blog" element={<div>블로그를,, 해볼까?</div>} />
           <Route path="guest-book" element={<GuestBook></GuestBook>} />
@@ -44,7 +44,7 @@ root.render(
           </Route>
           <Route path="auth">
              <Route path="oauth2callback" element={<Oauth2callback />} />
-          </Route>
+          </Route> */}
         </Route>
       </Routes>
         </Provider>

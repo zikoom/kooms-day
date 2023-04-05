@@ -1,1 +1,20 @@
 @import "./reset.scss";
+@import "./varilable";
+
+html {
+  height: 100%;
+}
+
+header {
+  height: $HEADER_HEIGHT;
+  background-color: $HEADER_BACKGROUND;
+}
+
+
+
+main {
+  padding-left: $MAIN_PADDING;
+  padding-right: $MAIN_PADDING;
+}
+
+
