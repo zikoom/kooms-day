@@ -1,7 +1,13 @@
+import { useState } from "react";
 
 function Overlay(){
+  const [fade, setFade] = useState(false);
+  setTimeout(() => {
+    setFade(true);
+  }, 1500);
+
   return (
-    <div className="overlay">오버레이</div>
+    <div className={"overlay " + (fade ? 'fadeout' : '')}></div>
   )
 }
 
