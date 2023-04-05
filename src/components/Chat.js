@@ -110,11 +110,17 @@ const Chat = () => {
     scrollDown('chatbox-scroll-div');
   }, [msgs])
 
-  if(isConnected && nickname){
-    return <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  />
-  }else{
-    return <ChatNickname set_nickname_req={set_nickname_req} />
-  }
+  return (
+    <div className="chatbox-container">
+      {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />}
+    </div>
+  )
+
+  // if(isConnected && nickname){
+  //   return <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  />
+  // }else{
+  //   return <ChatNickname set_nickname_req={set_nickname_req} />
+  // }
 }
 
 
