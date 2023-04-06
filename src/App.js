@@ -11,7 +11,7 @@ import { USERINFO_SET_LOGIN, USERINFO_SET_NAME } from './action/userinfo_actions
 import Loading from './components/Loading';
 import Overlay from './components/layout/Overlay';
 
-import '../src/scss/App.scss'
+import 'assets/scss/App.scss'
 
 
 

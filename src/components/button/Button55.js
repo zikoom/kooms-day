@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import styles from 'scss/button/button55.module.scss'
+import styles from 'assets/scss/button/button55.module.scss'
 console.log('styles: ', styles);
 
 export default function Button55({text, clickEvent}){
