@@ -15,8 +15,6 @@ main {
   padding-right: $MAIN_PADDING;
 }
 
-
-
 .overlay {
   position: fixed;
   top: 0;
@@ -25,6 +23,7 @@ main {
   height: 100%;
   background-color: $OVERLAY_BACKGROUND;
   opacity: 1;
+  z-index: 999;
 
   transition: opacity 1s linear;
 }
