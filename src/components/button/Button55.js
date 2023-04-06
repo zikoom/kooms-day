@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
 
-// import styles from '../'
+import styles from 'scss/button/button55.module.scss'
+console.log('styles: ', styles);
 
 export default function Button55({text, clickEvent}){
 
   console.log(text, clickEvent);
 
   return (
-    <button onClick={clickEvent}>{text}</button>
+    <button className={styles.loginbutton} onClick={clickEvent}>{text}</button>
   )
 }
 

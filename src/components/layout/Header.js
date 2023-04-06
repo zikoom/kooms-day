@@ -1,9 +1,9 @@
-import Button55 from "../button/Button55";
+import Button55 from "components/button/Button55";
 
 function Hedaer(){
   return (
     <header>
-      <Button55 />
+      <Button55 text="login" />
     </header>
   )
 }
