@@ -3,7 +3,6 @@ import { useState } from "react";
 function Overlay(){
   const [fade, setFade] = useState(false);
   const [display, setDisplay] = useState({});
-  let style = {}
   setTimeout(() => {
     setFade(true);
     setTimeout(() => {
