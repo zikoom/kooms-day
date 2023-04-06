@@ -1,7 +1,10 @@
+import Button55 from "../button/Button55";
 
 function Hedaer(){
   return (
-    <header></header>
+    <header>
+      <Button55 />
+    </header>
   )
 }
 
