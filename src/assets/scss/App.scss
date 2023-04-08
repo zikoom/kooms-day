@@ -2,10 +2,11 @@
 @import "./varilable";
 @import "./mixins";
 
-@font-face { /* 애플산돌고딕 폰트 적용 */
+@font-face {
   font-family: "BinggraeSamanco";
   src: url("../font/BinggraeSamanco.ttf") format("truetype");
   font-weight: normal;
+  font-size: 20px;
 }
 
 * {
@@ -19,12 +20,26 @@ html {
 
 header {
   height: $HEADER_HEIGHT;
-  background-color: $HEADER_BACKGROUND;
+  // background-color: $HEADER_BACKGROUND;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  display: flex;
+  padding: 0 $HEADER_PADDING;
+  // padding-left: $MAIN_PADDING;
+  // padding-right: $MAIN_PADDING;
+
+  .header-flex-content {height: 100%;}
+  .logo { width: calc(100% - #{$HEADER_LOGIN_WIDTH});}
+  .login {
+    width: $HEADER_LOGIN_WIDTH;
+    display: flex;
+    align-items: center;
+  }
 }
 
 main {
-  padding-left: $MAIN_PADDING;
-  padding-right: $MAIN_PADDING;
+  padding: 0 $MAIN_PADDING;
+  // padding-left: $MAIN_PADDING;
+  // padding-right: $MAIN_PADDING;
 }
 
 .overlay {
