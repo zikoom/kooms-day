@@ -13,8 +13,6 @@ import Overlay from './components/layout/Overlay';
 
 import 'assets/scss/App.scss'
 
-
-
 function App() {
 
   const dispatch = useDispatch();
@@ -57,7 +55,6 @@ function App() {
   useEffect(() => {
     loadOauthSecret(dispatch);
     checkGooglOauthLogin();
-
   })
 
   const isDisplay = useSelector(state => state.loadingManager.isDisplay)
