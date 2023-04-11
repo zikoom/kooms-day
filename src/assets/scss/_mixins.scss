@@ -39,3 +39,27 @@
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
 }
+
+
+
+
+
+//////////////// font /////////////////
+///
+
+// @mixin font-face($name, $file, $weight: noraml, $style: normal) {
+
+//   @font-face {
+
+//   font-family: "#{$name}";
+
+//   src: url('../../#{$file}.woff') format('woff'),
+
+//   url('../../#{$file}.ttf') format('truetype');
+
+//   font-weight: $weight;
+
+//   font-style: $style;
+
+//   }
+// }

@@ -1,0 +1,30 @@
+@import '../varilable';
+
+@font-face {
+
+  font-family: "BinggraeSamanco";
+
+  src: url('../../font/BinggraeSamanco.ttf') format('truetype');
+
+  font-weight: normal;
+
+  font-style: 45px;
+
+}
+
+.plate-container{
+  background-image: url('../../img/NameFlower4.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: BinggraeSamanco;
+}
