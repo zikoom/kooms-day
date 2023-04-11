@@ -17,6 +17,7 @@ function Hedaer(){
       const res = await loginGoogle()
       console.log("res: ", res);
       dispatch(SET_FIREBASE_USERINFO(res.user));
+      sessionStorage.setItem('userinfo', JSON.stringify(res.user));
     } catch (error) {
       console.log('err: ', error);
     }

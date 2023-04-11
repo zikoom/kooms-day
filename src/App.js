@@ -12,11 +12,20 @@ import Loading from './components/Loading';
 import Overlay from './components/layout/Overlay';
 
 import 'assets/scss/App.scss'
+import { SET_FIREBASE_USERINFO } from 'action/firebase_actions';
 
 function App() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+  //session에 저장되어있는 firebase auth 정보
+  const userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
+    if(userinfo) {
+    dispatch(SET_FIREBASE_USERINFO(userinfo));
+  }
+
 
   /**
    *
