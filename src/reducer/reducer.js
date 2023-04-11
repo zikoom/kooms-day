@@ -6,6 +6,7 @@ import { ACTION_LOADING_INIT_STATE, LOADING_DISPLAY } from "../action/loading";
 
 import { ACTION_GOOGLE_OAUTH_INIT_STATE, GOOGLE_OAUTH_SET_MANAGER, GOOGLE_OAUTH_SET_TOKEN } from "../action/oauth_actions";
 import { USERINFO_INIT_STATE, USERINFO_SETLOGIN, USERINFO_SETLOGOUT, USERINFO_SETNAME } from "../action/userinfo_actions";
+import { ACTION_FIREBASE_LOGIN_INIT_STATE, FIREBASE_LOGIN_SET_USER } from "action/firebase_actions";
 
 
 
@@ -103,9 +104,22 @@ function loadingManager(state = ACTION_LOADING_INIT_STATE, action){
   }
 }
 
+function firebaseManager(state = ACTION_FIREBASE_LOGIN_INIT_STATE, action){
+  switch(action.type){
+    case FIREBASE_LOGIN_SET_USER:
+      return {
+        ...state,
+        userinfo: action.state
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   socket: socketManager,
   googleOauth: oauthManager,
   userinfo: userinfo,
-  loadingManager: loadingManager
+  loadingManager: loadingManager,
+  firebaseManager: firebaseManager,
 })
