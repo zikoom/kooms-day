@@ -1,9 +1,7 @@
 @import '../varilable';
 @import '../mixins';
 
-//구글 나눔 고딕 폰트 임포트
-
-
+//구글 나눔 고딕 font-face mixins
 @include NanumGothic('../font/Google_NanumGothic/NanumGothic-Regular.ttf');
 
 .container {
