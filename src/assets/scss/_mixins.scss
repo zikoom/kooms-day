@@ -41,25 +41,9 @@
 }
 
 
-
-
-
-//////////////// font /////////////////
-///
-
-// @mixin font-face($name, $file, $weight: noraml, $style: normal) {
-
-//   @font-face {
-
-//   font-family: "#{$name}";
-
-//   src: url('../../#{$file}.woff') format('woff'),
-
-//   url('../../#{$file}.ttf') format('truetype');
-
-//   font-weight: $weight;
-
-//   font-style: $style;
-
-//   }
-// }
+@mixin NanumGothic($path, $detail: 'Regular'){
+  @font-face {
+    font-family: 'Nanum Gothic', sans-serif;
+    src: url($path);
+  }
+}

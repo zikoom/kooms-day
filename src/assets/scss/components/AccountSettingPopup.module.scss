@@ -1,7 +1,13 @@
 @import '../varilable';
+@import '../mixins';
 
+//구글 나눔 고딕 폰트 임포트
+
+
+@include NanumGothic('../font/Google_NanumGothic/NanumGothic-Regular.ttf');
 
 .container {
+  font-family: 'Nanum Gothic', sans-serif;
   position: fixed;
 
   right: $SETTING_RIGHT;
@@ -37,6 +43,8 @@
 
       .button{
         padding: 0.5rem 2.5rem 0.5rem 1rem;
+        font-family: inherit;
+        font-weight: bold;
       }
     }
   }
