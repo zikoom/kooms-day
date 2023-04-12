@@ -1,4 +1,5 @@
 import { SET_FIREBASE_USERINFO } from "action/firebase_actions";
+import AccountSettingPopup from "components/AccountSettingPopup";
 import Button55 from "components/button/Button55";
 import NamePlate from "components/NamePlate"
 
@@ -32,7 +33,11 @@ function Hedaer(){
       <div className="header-flex-content login">
         {
           userinfo ?
-          <NamePlate name={userinfo.displayName}/>:
+          <div style={{width: '100%', height: '100%'}}>
+            <NamePlate name={userinfo.displayName}/>
+            <AccountSettingPopup />
+          </div> :
+
           <Button55 clickEvent={login} text="login" />
         // <Button55 clickEvent={login} text="login" />
         }

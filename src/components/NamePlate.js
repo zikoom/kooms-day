@@ -15,6 +15,7 @@ export default function NamePlate(){
       <div className={styles['plate-content']} style={{backgroundImage: userThumbnail.length > 0 ? `url(${userThumbnail})` : ''}}>
 
       </div>
+
     </div>
   )
 }
