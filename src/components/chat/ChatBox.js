@@ -3,7 +3,7 @@ import '../../assets/scss/components/ChatBox.scss'
 
 export default function ChatBox (props) {
 
-  const {isConnected, userinfo, sendMsg, msgs, scrollTagID} = props;
+  const {isConnected, userinfo, sendMsg, msgs, scrollTagID, users} = props;
   const [text, setText] = useState('');
   const inputHandler = (e) => {setText(e.target.value)}
   const submit = (event) => {
@@ -18,6 +18,11 @@ export default function ChatBox (props) {
       <div className='chatbox' >
         <div className='chatbox__user-list'>
           <h1>User list</h1>
+          {
+            users.map((user, u_idx) => { return (
+              <div key={u_idx}>adsfasdfds</div>
+            )})
+          }
           {/* <div className='chatbox__user--active'>
             <p>Jack Thomson</p>
           </div>

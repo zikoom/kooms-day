@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
+import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_ROOM_ID, SET_CHAT_USER_DISCONNECTED, SET_CHAT_USER_JOIN, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
 import ChatBox from './chat/ChatBox';
 
 const _SERVER_PATH = process.env.REACT_APP_SOCKET_SERVER;
@@ -16,7 +16,7 @@ const Chat = () => {
   const _OTHER_COMMENT = 2;
 
   const dispatch = useDispatch();
-  const isConnected = useSelector(state => state.socket.isConnected);
+  const {isConnected, users} = useSelector(state => state.socket);
   const {userinfo} = useSelector(state => state.firebaseManager)
   const msgs = useSelector(state => state.socket.msgs)
 
@@ -73,7 +73,9 @@ const Chat = () => {
     socket.on('init', (msg) => {
       console.log('init in. :', msg);
       dispatch(SET_SOCKET_CONNECTION(true));
-      dispatch(SET_SOCKET_ID(msg));
+      dispatch(SET_SOCKET_ID(msg.ID));
+      msg.users.map( user => dispatch(SET_CHAT_USER_JOIN({ID: user.id})))
+      // dispatch(SET_CHAT_USER_JOIN({ID: msg}))
     })
 
     socket.on('enter-room-confirm', (msg) => {
@@ -91,6 +93,15 @@ const Chat = () => {
     socket.on('other_msg', (msg) => {
       console.log('other_msg recv. msg: ', msg);
       addMsg(_OTHER_COMMENT, msg);
+    })
+    socket.on('user_join', (msg) => {
+      console.log('user_join recv. msg: ', msg);
+      dispatch(SET_CHAT_USER_JOIN({ID: msg}));
+
+    })
+    socket.on('user_out', (msg) => {
+      console.log('user_out recv. msg: ', msg);
+      dispatch(SET_CHAT_USER_DISCONNECTED({ID: msg}));
     })
 
     // socket.on('set_nickname_response', (msg) => {
@@ -110,7 +121,7 @@ const Chat = () => {
 
   return (
     <div>
-      <ChatBox isConnected={isConnected} userinfo={userinfo} sendMsg={sendMsg} msgs={msgs} scrollTagID={scrollTagID}/>
+      <ChatBox isConnected={isConnected} userinfo={userinfo} sendMsg={sendMsg} msgs={msgs} scrollTagID={scrollTagID} users={users}/>
       {/* {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />} */}
     </div>
   )

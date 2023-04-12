@@ -8,6 +8,8 @@ export const CHAT_ROOMID = 'CHAT/ROOMID'
 export const CHAT_NICKNAME = 'CHAT/NICKNAME'
 export const CHAT_ADD_TEXT = 'CHAT/ADD_TEXT'
 export const CHAT_CLEAR_TEXT = 'CHAT/CLEAR_TEXT'
+export const CHAT_USER_JOIN = 'CHAT/USER_JOIN'
+export const CHAT_USER_DISCONNECTED = 'CHAT/USER_DISCONNECTED'
 
 /**
  * initial State
@@ -19,6 +21,7 @@ export const ACTION_SOCKET_INIT_STATE = {
   roomID: '',
   nickname: '',
   msgs: [],
+  users: []
 }
 
 /**
@@ -48,4 +51,10 @@ export function CHAT_ADD(state) {
 
 export function CHAT_CLEAR() {
   return { type: CHAT_CLEAR_TEXT}
+}
+export function SET_CHAT_USER_JOIN(state) {
+  return { type: CHAT_USER_JOIN, state}
+}
+export function SET_CHAT_USER_DISCONNECTED(state) {
+  return { type: CHAT_USER_DISCONNECTED, state}
 }
