@@ -83,7 +83,7 @@ function App() {
       <div onClick={AppClickEventHandler} style={{width: '100%', height: '100%'}}>
         <Layout />
       </div>
-      {showAccountSettingPopup ? <AccountSettingPopup /> : null }
+      {showAccountSettingPopup ? <AccountSettingPopup clickEventHandler={togleAccountSettingPopup} /> : null }
 
     </div>
   );

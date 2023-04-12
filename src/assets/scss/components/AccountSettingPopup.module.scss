@@ -9,12 +9,35 @@
 
 
   width: $SETTING_POPUP_WIDTH;
-  min-height: $SETTING_POPUP_MIN_HEIGHT;
+  padding: 5px;
 
 
-  background-color: #fff;
+  background-color: $SETTING_POPUP_CONTAINER_BACKGROUND_COLOR;
 
   border: none;
   border-radius: 28px;
   box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
+
+  .content-container {
+    border: none;
+    border-radius: 28px;
+    background-color: #fff;
+
+    .content {
+      display: flex;
+      box-sizing: border-box;
+      border-radius: inherit;
+
+      align-items: center;
+      height: 40px;
+
+      &:hover {
+        background-color: #d3d3d3;
+      }
+
+      .button{
+        padding: 0.5rem 2.5rem 0.5rem 1rem;
+      }
+    }
+  }
 }
