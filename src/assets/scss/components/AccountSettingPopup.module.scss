@@ -39,10 +39,12 @@
 
       &:hover {
         background-color: #d3d3d3;
+        cursor: pointer;
       }
 
       .button{
         padding: 0.5rem 2.5rem 0.5rem 1rem;
+
         font-family: inherit;
         font-weight: bold;
       }
