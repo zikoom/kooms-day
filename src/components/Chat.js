@@ -1,10 +1,8 @@
 import io from 'socket.io-client'
 
-import "../assets/css/Chatbox.css"
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
-import ChatNickname from './chat/ChatNickname';
 import ChatBox from './chat/ChatBox';
 
 const _SERVER_PATH = process.env.REACT_APP_SOCKET_SERVER;
@@ -111,8 +109,9 @@ const Chat = () => {
   }, [msgs])
 
   return (
-    <div className="chatbox-container">
-      {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />}
+    <div>
+      <ChatBox />
+      {/* {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />} */}
     </div>
   )
 
