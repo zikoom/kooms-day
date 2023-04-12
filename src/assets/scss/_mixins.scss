@@ -47,3 +47,11 @@
     src: url($path);
   }
 }
+@mixin BinggraeSamanco($path){
+  @font-face {
+    font-family: "BinggraeSamanco";
+    src: url($path);
+    // font-weight: normal;
+    // font-size: 20px;
+  }
+}
