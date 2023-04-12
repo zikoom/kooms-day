@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_NICKNAME, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
+import { CHAT_ADD, CHAT_CLEAR, SET_CHAT_ROOM_ID, SET_SOCKET_CONNECTION, SET_SOCKET_ID} from '../action/actions';
 import ChatBox from './chat/ChatBox';
 
 const _SERVER_PATH = process.env.REACT_APP_SOCKET_SERVER;
@@ -17,36 +17,36 @@ const Chat = () => {
 
   const dispatch = useDispatch();
   const isConnected = useSelector(state => state.socket.isConnected);
-  const nickname = useSelector(state => state.socket.nickname);
-  const roomID = useSelector(state => state.socket.roomID)
+  const {userinfo} = useSelector(state => state.firebaseManager)
   const msgs = useSelector(state => state.socket.msgs)
 
-  const set_nickname_req = (nickname) => {
-    if(!nickname) {return;}
-    socket.emit('set_nickname_request', nickname);
-  }
+  const scrollTagID = 'asdfasdfasdfsadfsadf';
 
-  const enterRoom = (roomNumString) => {
-    const roomNumber = Number(roomNumString);
-    if(isNaN(roomNumber) || roomNumber <= 0){
-      console.log(`not valid roomNumber:${roomNumber}`);
-      alert("방번호가 잘못되얐어요 !! 0 보다 큰 정수를 입력해 주세요");
-      return;
-    }
-    socket.emit('enter-room', roomNumber);
-  }
+  // const set_nickname_req = (nickname) => {
+  //   if(!nickname) {return;}
+  //   socket.emit('set_nickname_request', nickname);
+  // }
 
-  const addMsg = (type, {nickname, text}) => {
+  // const enterRoom = (roomNumString) => {
+  //   const roomNumber = Number(roomNumString);
+  //   if(isNaN(roomNumber) || roomNumber <= 0){
+  //     console.log(`not valid roomNumber:${roomNumber}`);
+  //     alert("방번호가 잘못되얐어요 !! 0 보다 큰 정수를 입력해 주세요");
+  //     return;
+  //   }
+  //   socket.emit('enter-room', roomNumber);
+  // }
+
+  const addMsg = (type, {userName, text}) => {
     if(!(type && text)) {console.log('type or text unvalid. return');}
-      dispatch(CHAT_ADD({type, text, nickname}))
+      dispatch(CHAT_ADD({type, text, userName}))
   }
 
-  const sendMsg = (text, roomID) => {
-    if(!(text && roomID)){return;}
+  const sendMsg = (text, userName) => {
+    if(!(text && userName)){return;}
     const sendMsgObj = {
-      nickname: nickname,
       text: text,
-      roomID: roomID
+      userName: userName
     }
     console.log('sendMsg in. msg: ', sendMsgObj);
     socket.emit('chat', sendMsgObj);
@@ -93,10 +93,10 @@ const Chat = () => {
       addMsg(_OTHER_COMMENT, msg);
     })
 
-    socket.on('set_nickname_response', (msg) => {
-      console.log('set_nickname_response: ', msg);
-      dispatch(SET_CHAT_NICKNAME(msg));
-    })
+    // socket.on('set_nickname_response', (msg) => {
+    //   console.log('set_nickname_response: ', msg);
+    //   dispatch(SET_CHAT_NICKNAME(msg));
+    // })
 
     return () => {socket.disconnect()}
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,12 +105,12 @@ const Chat = () => {
 
   //채팅 자동 스크롤
   useEffect(() => {
-    scrollDown('chatbox-scroll-div');
+    scrollDown(scrollTagID);
   }, [msgs])
 
   return (
     <div>
-      <ChatBox />
+      <ChatBox isConnected={isConnected} userinfo={userinfo} sendMsg={sendMsg} msgs={msgs} scrollTagID={scrollTagID}/>
       {/* {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />} */}
     </div>
   )

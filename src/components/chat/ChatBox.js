@@ -1,45 +1,68 @@
+import { useState } from 'react';
 import '../../assets/scss/components/ChatBox.scss'
 
-export default function ChatBox () {
+export default function ChatBox (props) {
+
+  const {isConnected, userinfo, sendMsg, msgs, scrollTagID} = props;
+  const [text, setText] = useState('');
+  const inputHandler = (e) => {setText(e.target.value)}
+  const submit = (event) => {
+    console.log('submit in');
+    event.preventDefault();
+    sendMsg(text, userinfo.displayName || null);
+    setText('');
+  }
   return (
-    <div class='container' ng-cloak ng-app="chatApp">
+    <div className='container' >
       {/* <h1>Swanky Chatbox UI With Angular</h1> */}
-      <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
-        <div class='chatbox__user-list'>
+      <div className='chatbox' >
+        <div className='chatbox__user-list'>
           <h1>User list</h1>
-          <div class='chatbox__user--active'>
+          {/* <div className='chatbox__user--active'>
             <p>Jack Thomson</p>
           </div>
-          <div class='chatbox__user--busy'>
+          <div className='chatbox__user--busy'>
             <p>Angelina Jolie</p>
           </div>
-          <div class='chatbox__user--active'>
+          <div className='chatbox__user--active'>
             <p>George Clooney</p>
           </div>
-          <div class='chatbox__user--active'>
+          <div className='chatbox__user--active'>
             <p>Seth Rogen</p>
           </div>
-          <div class='chatbox__user--away'>
+          <div className='chatbox__user--away'>
             <p>John Lydon</p>
-          </div>
+          </div> */}
         </div>
-        <div class="chatbox__messages" ng-repeat="message in messages">
-          <div class="chatbox__messages__user-message">
+        <div className="chatbox__messages">
+          <div id={scrollTagID} className="chatbox__messages__user-message">
             {/* 남의 메세지는 other class 추가 */}
-            <div class="chatbox__messages__user-message--ind-message other">
-              <p class="name">name</p>
+            {/* <div className="chatbox__messages__user-message--ind-message other">
+              <p className="name">name</p>
               <br/>
-              <p class="message">msgmsg</p>
+              <p className="message">msgmsg</p>
             </div>
-            <div class="chatbox__messages__user-message--ind-message">
-              <p class="name">name</p>
+            <div className="chatbox__messages__user-message--ind-message">
+              <p className="name">name</p>
               <br/>
-              <p class="message">msgmsg</p>
-            </div>
+              <p className="message">msgmsg</p>
+            </div> */}
+            {
+              msgs.map((msg, idx) => {
+                const className = msg.type === 1 ? 'chatbox__messages__user-message--ind-message': 'chatbox__messages__user-message--ind-message other'
+                return (
+
+                <div className={className} key={idx}>
+                  <p className="name">{msg.userName}</p>
+                  <br/>
+                  <p className="message">{msg.text}</p>
+                </div>
+              )})
+            }
           </div>
         </div>
-        <form onSubmit={(e) => {e.preventDefault()}}>
-          <input type="text" placeholder="Enter your message" />
+        <form onSubmit={submit}>
+          <input type="text" value={text} onInput={inputHandler} placeholder={isConnected && userinfo ? "Enter your message" : "로그인 해주세요 !!"} disabled={isConnected && userinfo ? false : true}/>
         </form>
       </div>
     </div>
