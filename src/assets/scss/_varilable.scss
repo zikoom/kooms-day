@@ -21,7 +21,9 @@ $MAIN_PADDING: 70px;
 
 //account seeting popup 관련 변수
 
-// $SETTING_WIDTH:
+$SETTING_POPUP_WIDTH: 300px;
+$SETTING_POPUP_MIN_HEIGHT: 200px;
+$SETTING_RIGHT: calc( #{$HEADER_PADDING} + #{$HEADER_LOGIN_WIDTH / 2} );
 
 
 

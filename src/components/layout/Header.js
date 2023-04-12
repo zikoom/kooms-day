@@ -1,5 +1,5 @@
 import { SET_FIREBASE_USERINFO } from "action/firebase_actions";
-import AccountSettingPopup from "components/AccountSettingPopup";
+import { SET_ACCOUNT_SETTING_POPUP_STATE } from "action/popup_actions";
 import Button55 from "components/button/Button55";
 import NamePlate from "components/NamePlate"
 
@@ -26,19 +26,17 @@ function Hedaer(){
 
 
   const {userinfo} = useSelector(state => state.firebaseManager);
+  const {showAccountSettingPopup} = useSelector(state => state.popupManager);
+  const togleAccountSettingPopup = (event) => {event.stopPropagation(); dispatch(SET_ACCOUNT_SETTING_POPUP_STATE(!showAccountSettingPopup))}
 
   return (
     <header>
       <div className="header-flex-content logo"></div>
       <div className="header-flex-content login">
         {
-          userinfo ?
-          <div style={{width: '100%', height: '100%'}}>
-            <NamePlate name={userinfo.displayName}/>
-            <AccountSettingPopup />
-          </div> :
-
-          <Button55 clickEvent={login} text="login" />
+          userinfo
+          ? <NamePlate name={userinfo.displayName} clickEventHandler={togleAccountSettingPopup}/>
+          : <Button55 clickEvent={login} text="login" />
         // <Button55 clickEvent={login} text="login" />
         }
       </div>

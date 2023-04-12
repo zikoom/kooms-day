@@ -8,11 +8,13 @@ import { useSelector } from 'react-redux';
 
 
 
-export default function NamePlate(){
+export default function NamePlate(props){
+
+  const {clickEventHandler = () => {console.log('default click event')}} = props;
   const userThumbnail = useSelector(state => state.firebaseManager.userinfo.photoURL) || '';
   return (
     <div className={styles['plate-container']}>
-      <div className={styles['plate-content']} style={{backgroundImage: userThumbnail.length > 0 ? `url(${userThumbnail})` : ''}}>
+      <div onClick={clickEventHandler} className={styles['plate-content']} style={{backgroundImage: userThumbnail.length > 0 ? `url(${userThumbnail})` : ''}}>
 
       </div>
 

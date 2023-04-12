@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,8 @@ import Overlay from './components/layout/Overlay';
 
 import 'assets/scss/App.scss'
 import { SET_FIREBASE_USERINFO } from 'action/firebase_actions';
+import { SET_ACCOUNT_SETTING_POPUP_STATE } from 'action/popup_actions';
+import AccountSettingPopup from 'components/AccountSettingPopup';
 
 function App() {
 
@@ -67,13 +69,22 @@ function App() {
   })
 
   const isDisplay = useSelector(state => state.loadingManager.isDisplay)
-  // const overayOpacity = use
+  const {showAccountSettingPopup} = useSelector(state => state.popupManager);
+  const togleAccountSettingPopup = (event) => {event.stopPropagation(); if(showAccountSettingPopup) {dispatch(SET_ACCOUNT_SETTING_POPUP_STATE(!showAccountSettingPopup)) } }
+
+  const AppClickEventHandler = (event) => {
+    togleAccountSettingPopup(event);
+  }
 
   return (
     <div className="App">
       {isDisplay ? <Loading /> : null}
       <Overlay />
-      <Layout />
+      <div onClick={AppClickEventHandler} style={{width: '100%', height: '100%'}}>
+        <Layout />
+      </div>
+      {showAccountSettingPopup ? <AccountSettingPopup /> : null }
+
     </div>
   );
 }
