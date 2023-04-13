@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../../assets/scss/components/ChatBox.scss'
+import { useSelector } from 'react-redux';
 
 export default function ChatBox (props) {
 
@@ -14,6 +15,7 @@ export default function ChatBox (props) {
   }
 
   const [showMobileUserList, setShowMobileUserList] = useState(false);
+  const windowWdith = useSelector(state => state.socket.windowWidth)
   const toggleUserList = () => {
     console.log('toggle');
     setShowMobileUserList(cur => !cur)
@@ -25,7 +27,7 @@ export default function ChatBox (props) {
       <div className='chatbox' >
         <i onClick={toggleUserList} className="icofont-user-alt-5 mobile-iocn"></i>
         {
-          showMobileUserList
+          (showMobileUserList || windowWdith > 576)
           ?  <div className='chatbox__user-list'>
               <h1>User list</h1>
               {

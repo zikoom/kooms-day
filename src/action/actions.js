@@ -11,6 +11,8 @@ export const CHAT_CLEAR_TEXT = 'CHAT/CLEAR_TEXT'
 export const CHAT_USER_JOIN = 'CHAT/USER_JOIN'
 export const CHAT_USER_DISCONNECTED = 'CHAT/USER_DISCONNECTED'
 
+export const APP_WINDOW_WIDTH = 'APP/WINDOW_WIDTH'
+
 /**
  * initial State
  */
@@ -21,7 +23,8 @@ export const ACTION_SOCKET_INIT_STATE = {
   roomID: '',
   nickname: '',
   msgs: [],
-  users: []
+  users: [],
+  windowWidth: null
 }
 
 /**
@@ -57,4 +60,7 @@ export function SET_CHAT_USER_JOIN(state) {
 }
 export function SET_CHAT_USER_DISCONNECTED(state) {
   return { type: CHAT_USER_DISCONNECTED, state}
+}
+export function SET_APP_WINDOW_WIDTH(state) {
+  return { type: APP_WINDOW_WIDTH, state}
 }

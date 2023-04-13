@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import {
-  SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE, CHAT_ID, CHAT_NICKNAME, CHAT_ADD_TEXT, CHAT_ROOMID, CHAT_CLEAR_TEXT, CHAT_USER_JOIN, CHAT_USER_DISCONNECTED
+  SOCKET_CONNECTION, ACTION_SOCKET_INIT_STATE, CHAT_ID, CHAT_NICKNAME, CHAT_ADD_TEXT, CHAT_ROOMID, CHAT_CLEAR_TEXT, CHAT_USER_JOIN, CHAT_USER_DISCONNECTED, APP_WINDOW_WIDTH
 } from '../action/actions'
 import { ACTION_LOADING_INIT_STATE, LOADING_DISPLAY } from "../action/loading";
 
@@ -53,6 +53,11 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
       return {
         ...state,
         users: state.users.filter(user => user.ID !== action.state)
+      }
+    case APP_WINDOW_WIDTH:
+      return {
+        ...state,
+        windowWidth: action.state
       }
     default:
       return state

@@ -15,6 +15,8 @@ import 'assets/scss/App.scss'
 import { SET_FIREBASE_USERINFO } from 'action/firebase_actions';
 import { SET_ACCOUNT_SETTING_POPUP_STATE } from 'action/popup_actions';
 import AccountSettingPopup from 'components/AccountSettingPopup';
+import { SET_APP_WINDOW_WIDTH } from 'action/actions';
+import { useEffect } from 'react';
 
 function App() {
 
@@ -74,6 +76,16 @@ function App() {
   const AppClickEventHandler = (event) => {
     toggleAccountSettingPopup(event);
   }
+
+  const windowResizeHandler = () => {
+    dispatch(SET_APP_WINDOW_WIDTH(window.innerWidth))
+  }
+
+  useEffect(() => {
+    dispatch(SET_APP_WINDOW_WIDTH(window.innerWidth))
+    window.addEventListener('resize', windowResizeHandler);
+    return () => {window.removeEventListener('resize', windowResizeHandler)}
+  })
 
 
   return (
