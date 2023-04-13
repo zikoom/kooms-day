@@ -2,19 +2,11 @@
 import Hedaer from "./Header";
 import Content from "./Content";
 
-import { useState } from "react";
 
 function Layout(){
-
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const toggleMobileMenu = () => {setShowMobileMenu(cur => !cur)}
-
-  console.log(showMobileMenu);
-
   return (
     <div className="top-container">
-      <Hedaer toggleMobileMenu={toggleMobileMenu} />
-      {/* <NavBar showMobileMenu={showMobileMenu} /> */}
+      <Hedaer />
       <Content />
     </div>
   )
