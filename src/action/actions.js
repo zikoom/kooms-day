@@ -11,6 +11,9 @@ export const CHAT_CLEAR_TEXT = 'CHAT/CLEAR_TEXT'
 export const CHAT_USER_JOIN = 'CHAT/USER_JOIN'
 export const CHAT_USER_DISCONNECTED = 'CHAT/USER_DISCONNECTED'
 
+
+export const CHAT_USER_LOGOUT = 'CHAT/USER_LOGOUT'
+
 export const APP_WINDOW_WIDTH = 'APP/WINDOW_WIDTH'
 
 /**
@@ -61,6 +64,11 @@ export function SET_CHAT_USER_JOIN(state) {
 export function SET_CHAT_USER_DISCONNECTED(state) {
   return { type: CHAT_USER_DISCONNECTED, state}
 }
+
+export function SET_CHAT_USER_LOGOUT() {
+  return {type: CHAT_USER_LOGOUT}
+}
+
 export function SET_APP_WINDOW_WIDTH(state) {
   return { type: APP_WINDOW_WIDTH, state}
 }
