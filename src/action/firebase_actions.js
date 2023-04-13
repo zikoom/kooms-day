@@ -15,6 +15,7 @@ export const FIREBASE_LOGIN_SET_USER = 'FIREBASE_LOGIN/SET_USER'
 
 export const ACTION_FIREBASE_LOGIN_INIT_STATE = {
 
+  isLogined: false,
   userinfo: null,
 }
 

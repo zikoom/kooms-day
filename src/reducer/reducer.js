@@ -49,9 +49,10 @@ function socketManager(state = ACTION_SOCKET_INIT_STATE, action) {
         users: [...state.users, action.state]
       }
     case CHAT_USER_DISCONNECTED:
+      console.log('action.state: ', action.state);
       return {
         ...state,
-        users: state.users.filter(user => user.ID !== action.state.ID)
+        users: state.users.filter(user => user.ID !== action.state)
       }
     default:
       return state
@@ -120,7 +121,8 @@ function firebaseManager(state = ACTION_FIREBASE_LOGIN_INIT_STATE, action){
     case FIREBASE_LOGIN_SET_USER:
       return {
         ...state,
-        userinfo: action.state
+        userinfo: action.state,
+        isLogined: !!action.state
       }
     default:
       return state

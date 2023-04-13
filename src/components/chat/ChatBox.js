@@ -7,7 +7,6 @@ export default function ChatBox (props) {
   const [text, setText] = useState('');
   const inputHandler = (e) => {setText(e.target.value)}
   const submit = (event) => {
-    console.log('submit in');
     event.preventDefault();
     sendMsg(text, userinfo.displayName || null);
     setText('');
@@ -19,8 +18,10 @@ export default function ChatBox (props) {
         <div className='chatbox__user-list'>
           <h1>User list</h1>
           {
-            users.map((user, u_idx) => { return (
-              <div key={u_idx}>adsfasdfds</div>
+            users.map((user, idx) => { return (
+              <div className='chatbox__user--active' key={user.name + `${idx}`}>
+                <p>{user.name}</p>
+              </div>
             )})
           }
           {/* <div className='chatbox__user--active'>

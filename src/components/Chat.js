@@ -17,7 +17,7 @@ const Chat = () => {
 
   const dispatch = useDispatch();
   const {isConnected, users} = useSelector(state => state.socket);
-  const {userinfo} = useSelector(state => state.firebaseManager)
+  const {isLogined, userinfo} = useSelector(state => state.firebaseManager)
   const msgs = useSelector(state => state.socket.msgs)
 
   const scrollTagID = 'asdfasdfasdfsadfsadf';
@@ -60,6 +60,10 @@ const Chat = () => {
   }
 
   useEffect(() => {
+    console.log('userlogined:  ', isLogined);
+
+    if(!isLogined) return;
+
     socket = io(_SERVER_PATH, {
       reconnectionDelay: 1000,
       reconnection: true,
@@ -67,15 +71,20 @@ const Chat = () => {
       // transports: ['websocket'],
       agent: false,
       upgrade: false,
-      rejectUnauthorized: false
+      rejectUnauthorized: false,
+      query: {
+        name: userinfo?.displayName || '',
+      }
     })
+    console.log('socket: ', socket);
 
     socket.on('init', (msg) => {
       console.log('init in. :', msg);
       dispatch(SET_SOCKET_CONNECTION(true));
       dispatch(SET_SOCKET_ID(msg.ID));
-      msg.users.map( ID => dispatch(SET_CHAT_USER_JOIN({ID: ID})))
-      // dispatch(SET_CHAT_USER_JOIN({ID: msg}))
+      msg.map( user => dispatch(SET_CHAT_USER_JOIN(user)))
+
+
     })
 
     socket.on('enter-room-confirm', (msg) => {
@@ -96,12 +105,13 @@ const Chat = () => {
     })
     socket.on('user_join', (msg) => {
       console.log('user_join recv. msg: ', msg);
-      dispatch(SET_CHAT_USER_JOIN({ID: msg}));
+      dispatch(SET_CHAT_USER_JOIN(msg));
 
     })
     socket.on('user_out', (msg) => {
+      //msg: 연결이 끊긴 유저의 socketID
       console.log('user_out recv. msg: ', msg);
-      dispatch(SET_CHAT_USER_DISCONNECTED({ID: msg}));
+      dispatch(SET_CHAT_USER_DISCONNECTED(msg));
     })
 
     // socket.on('set_nickname_response', (msg) => {
@@ -111,7 +121,7 @@ const Chat = () => {
 
     return () => {socket.disconnect()}
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isLogined])
 
 
   //채팅 자동 스크롤

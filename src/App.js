@@ -19,7 +19,6 @@ import AccountSettingPopup from 'components/AccountSettingPopup';
 function App() {
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
 
   //session에 저장되어있는 firebase auth 정보
@@ -70,11 +69,12 @@ function App() {
 
   const isDisplay = useSelector(state => state.loadingManager.isDisplay)
   const {showAccountSettingPopup} = useSelector(state => state.popupManager);
-  const togleAccountSettingPopup = (event) => {event.stopPropagation(); if(showAccountSettingPopup) {dispatch(SET_ACCOUNT_SETTING_POPUP_STATE(!showAccountSettingPopup)) } }
+  const toggleAccountSettingPopup = (event) => {event.stopPropagation(); if(showAccountSettingPopup) {dispatch(SET_ACCOUNT_SETTING_POPUP_STATE(!showAccountSettingPopup)) } }
 
   const AppClickEventHandler = (event) => {
-    togleAccountSettingPopup(event);
+    toggleAccountSettingPopup(event);
   }
+
 
   return (
     <div className="App">
@@ -83,7 +83,7 @@ function App() {
       <div onClick={AppClickEventHandler} style={{width: '100%', height: '100%'}}>
         <Layout />
       </div>
-      {showAccountSettingPopup ? <AccountSettingPopup clickEventHandler={togleAccountSettingPopup} /> : null }
+      {showAccountSettingPopup ? <AccountSettingPopup clickEventHandler={toggleAccountSettingPopup} /> : null }
 
     </div>
   );
