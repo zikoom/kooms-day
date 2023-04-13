@@ -179,6 +179,7 @@ html,body {
   .container{
     height: calc(100% - #{$HEADER_HEIGHT});
     padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   .chatbox {
