@@ -5,41 +5,55 @@ export default function ChatBox (props) {
 
   const {isConnected, userinfo, sendMsg, msgs, scrollTagID, users} = props;
   const [text, setText] = useState('');
+
   const inputHandler = (e) => {setText(e.target.value)}
   const submit = (event) => {
     event.preventDefault();
     sendMsg(text, userinfo.displayName || null);
     setText('');
   }
+
+  const [showMobileUserList, setShowMobileUserList] = useState(false);
+  const toggleUserList = () => {
+    console.log('toggle');
+    setShowMobileUserList(cur => !cur)
+  }
+
   return (
     <div className='container' >
       {/* <h1>Swanky Chatbox UI With Angular</h1> */}
       <div className='chatbox' >
-        <div className='chatbox__user-list'>
-          <h1>User list</h1>
-          {
-            users.map((user, idx) => { return (
-              <div className='chatbox__user--active' key={user.name + `${idx}`}>
-                <p>{user.name}</p>
+        <i onClick={toggleUserList} className="icofont-user-alt-5 mobile-iocn"></i>
+        {
+          showMobileUserList
+          ?  <div className='chatbox__user-list'>
+              <h1>User list</h1>
+              {
+                users.map((user, idx) => { return (
+                  <div className='chatbox__user--active' key={user.name + `${idx}`}>
+                    <p>{user.name}</p>
+                  </div>
+                )})
+              }
+              {/* <div className='chatbox__user--active'>
+                <p>Jack Thomson</p>
               </div>
-            )})
-          }
-          {/* <div className='chatbox__user--active'>
-            <p>Jack Thomson</p>
-          </div>
-          <div className='chatbox__user--busy'>
-            <p>Angelina Jolie</p>
-          </div>
-          <div className='chatbox__user--active'>
-            <p>George Clooney</p>
-          </div>
-          <div className='chatbox__user--active'>
-            <p>Seth Rogen</p>
-          </div>
-          <div className='chatbox__user--away'>
-            <p>John Lydon</p>
-          </div> */}
-        </div>
+              <div className='chatbox__user--busy'>
+                <p>Angelina Jolie</p>
+              </div>
+              <div className='chatbox__user--active'>
+                <p>George Clooney</p>
+              </div>
+              <div className='chatbox__user--active'>
+                <p>Seth Rogen</p>
+              </div>
+              <div className='chatbox__user--away'>
+                <p>John Lydon</p>
+              </div> */}
+            </div>
+          : null
+        }
+
         <div className="chatbox__messages">
           <div id={scrollTagID} className="chatbox__messages__user-message">
             {/* 남의 메세지는 other class 추가 */}

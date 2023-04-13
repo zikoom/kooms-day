@@ -1,6 +1,7 @@
 @import "./reset.scss";
 @import "./varilable";
 @import "./mixins";
+@import "../css/icofont.css";
 
 @font-face {
   font-family: "BinggraeSamanco";
@@ -44,7 +45,7 @@ header {
 main {
   height: 100vh;
   margin-top: $HEADER_HEIGHT;
-  padding: 0 $MAIN_PADDING;
+  // padding: 0 $MAIN_PADDING;
   // padding-left: $MAIN_PADDING;
   // padding-right: $MAIN_PADDING;
 }

@@ -130,7 +130,7 @@ const Chat = () => {
   }, [msgs])
 
   return (
-    <div>
+    <div style={{height: '100%'}}>
       <ChatBox isConnected={isConnected} userinfo={userinfo} sendMsg={sendMsg} msgs={msgs} scrollTagID={scrollTagID} users={users}/>
       {/* {isConnected && nickname ? <ChatBox nickname={nickname} enterRoom={enterRoom} roomID={roomID} msgs={msgs} sendMsg={sendMsg}  /> : <ChatNickname set_nickname_req={set_nickname_req} />} */}
     </div>
