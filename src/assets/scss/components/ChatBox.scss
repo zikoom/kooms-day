@@ -32,7 +32,7 @@ html,body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 700px;
+  height: 100%;
   width: 100%;
   h1 {
     margin: 0.5em auto;
@@ -177,7 +177,7 @@ html,body {
 
 @media (max-width: 576px) {
   .container{
-    height: calc(100% - #{$HEADER_HEIGHT});
+    height: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
   }

@@ -43,11 +43,15 @@ header {
 }
 
 main {
-  height: 100vh;
+  height: calc(100vh - #{$HEADER_HEIGHT});
   margin-top: $HEADER_HEIGHT;
+  overflow: auto;
   // padding: 0 $MAIN_PADDING;
   // padding-left: $MAIN_PADDING;
   // padding-right: $MAIN_PADDING;
+  .content{
+    height: 100%;
+  }
 }
 
 .overlay {
