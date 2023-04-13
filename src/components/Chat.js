@@ -74,7 +74,7 @@ const Chat = () => {
       console.log('init in. :', msg);
       dispatch(SET_SOCKET_CONNECTION(true));
       dispatch(SET_SOCKET_ID(msg.ID));
-      msg.users.map( user => dispatch(SET_CHAT_USER_JOIN({ID: user.id})))
+      msg.users.map( ID => dispatch(SET_CHAT_USER_JOIN({ID: ID})))
       // dispatch(SET_CHAT_USER_JOIN({ID: msg}))
     })
 
