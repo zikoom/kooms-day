@@ -42,6 +42,12 @@ header {
   }
 }
 
+@media (max-width: 576px) {
+  header {
+    padding: 0;
+  }
+}
+
 main {
   height: calc(100vh - #{$HEADER_HEIGHT});
   margin-top: $HEADER_HEIGHT;
