@@ -68,7 +68,8 @@ html,body {
     width: 65%;
     border-radius: 5px;
     margin: 1.2em 1em;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     font-family: inherit;
 
